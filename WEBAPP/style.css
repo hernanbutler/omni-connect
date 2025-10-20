@@ -22,6 +22,68 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Utility classes */
+.u-mb-0-75 { margin-bottom: 0.75rem; }
+.u-mb-1 { margin-bottom: 1rem; }
+.u-mb-1-5 { margin-bottom: 1.5rem; }
+.u-mt-1 { margin-top: 1rem; }
+.u-p-2 { padding: 2rem; }
+.u-text-center { text-align: center; }
+.u-flex-center { display: flex; align-items: center; justify-content: center; }
+.u-grid-1-1 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.u-grid-1 { display: grid; grid-template-columns: 1fr; }
+.u-full-width { width: 100%; }
+.u-rounded-sm { border-radius: 0.5rem; }
+.u-rounded { border-radius: 0.75rem; }
+.u-badge { padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600; }
+.u-segment-border { border-left: 4px solid var(--primary); }
+.u-modal { display: none; }
+.u-modal .modal-content { max-width: 800px; }
+.u-muted { color: var(--text-secondary); }
+.u-card-pad { padding: 1.5rem; }
+.u-bg-main { background: var(--bg-main); }
+.u-bg-card { background: var(--bg-card); }
+.u-border { border: 1px solid var(--border); }
+.u-dashed { border-style: dashed; }
+
+/* Small reusable components */
+.u-chip {
+    padding: 0.5rem 0.75rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.badge-pill {
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.u-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.u-progress .u-progress-fill {
+    height: 100%;
+    background: var(--primary);
+}
+
+.card-loading { text-align: center; padding: 2rem; }
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg-main);
@@ -670,12 +732,7 @@ body {
     margin-bottom: 2rem;
 }
 
-.insights-card {
-    background: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    border: 1px solid var(--border);
-}
+
 
 .insights-card h4 {
     font-size: 1.125rem;
@@ -705,7 +762,7 @@ body {
 
 .insight-item i {
     font-size: 1.25rem;
-    color: var(--primary);
+    color: var(white);
     margin-top: 0.125rem;
 }
 
@@ -824,4 +881,206 @@ body {
     .kpi-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+/* Estilos adicionales para el Generador IA */
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-control::placeholder {
+    color: #94a3b8;
+}
+
+/* Insights Card */
+.insights-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+}
+
+
+
+.insight-item {
+    display: flex;
+    align-items: start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.insight-item:last-child {
+    margin-bottom: 0;
+}
+
+.insight-item i {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.insight-item p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 13px;
+}
+
+/* Automation Card */
+.automation-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.automation-status h4 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 16px;
+}
+
+/* Content Section */
+.content-section {
+    padding: 1.5rem 0;
+}
+
+.content-section h4 {
+    margin: 0 0 1rem 0;
+    color: #221818;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 18px;
+}
+
+/* Segment Badge */
+.segment-badge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background: #e0e7ff;
+    color: #4f46e5;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* KPI Grid for content types */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.bx-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .campaign-performance > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .content-section > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .kpi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+/* Hover effects for interactive elements */
+.kpi-card:hover,
+.automation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+button,
+.btn,
+.kpi-card,
+.automation-card,
+.form-control {
+    transition: all 0.2s ease;
+}
+
+/* Scrollbar personalizado para el contenido generado */
+#generatedContentDisplay::-webkit-scrollbar {
+    width: 8px;
+}
+
+#generatedContentDisplay::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+#generatedContentDisplay::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+#generatedContentDisplay::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }

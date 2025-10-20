@@ -202,3 +202,58 @@ Este proyecto está licenciado bajo la **Licencia MIT** – ver archivo [LICENSE
 
 ---
 
+ │    C:\USERS\JOSE-\DESKTOP\PYTHON\NO COUNTRY4\OMNI_CONNECT\BACKEND                                                                                                                          │
+ │                                                                                                                                                                                            │
+ │    │   data_handler.py                                                                                                                                                                     │
+ │                                                                                                                                                                                            │
+ │    │   main.py                                                                                                                                                                             │
+ │                                                                                                                                                                                            │
+ │    │   requirements.txt                                                                                                                                                                    │
+ │                                                                                                                                                                                            │
+ │    │   __init__.py                                                                                                                                                                         │
+ │                                                                                                                                                                                            │
+ │    │                                                                                                                                                                                       │
+ │                                                                                                                                                                                            │
+ │    ├───routers                                                                                                                                                                             │
+ │                                                                                                                                                                                            │
+ │    │   │   ai_content.py                                                                                                                                                                   │
+ │                                                                                                                                                                                            │
+ │    │   │   analytics.py                                                                                                                                                                    │
+ │                                                                                                                                                                                            │
+ │    │   │   automation.py                                                                                                                                                                   │
+ │                                                                                                                                                                                            │
+ │    │   │   campaigns.py                                                                                                                                                                    │
+ │                                                                                                                                                                                            │
+ │    │   │   dashboard.py                                                                                                                                                                    │
+ │                                                                                                                                                                                            │
+ │    │   │   segmentation.py                                                                                                                                                                 │
+ │                                                                                                                                                                                            │
+ │    │   │   social.py                                                                                                                                                                       │
+ │                                                                                                                                                                                            │
+ │    │   │                                                                                                                                                                                   │
+ │                                                                                                                                                                                            │
+ │    │   └───__pycache__                                                                                                                                                                     │
+ │                                                                                                                                                                                            │
+ │    │           ai_content.cpython-313.pyc                                                                                                                                                  │
+ │                                                                                                                                                                                            │
+ │    │           analytics.cpython-313.pyc                                                                                                                                                   │
+ │                                                                                                                                                                                            │
+ │    │           automation.cpython-313.pyc                                                                                                                                                  │
+ │                                                                                                                                                                                            │
+ │    │           campaigns.cpython-313.pyc                                                                                                                                                   │
+ │                                                                                                                                                                                            │
+ │    │           dashboard.cpython-313.pyc                                                                                                                                                   │
+ │                                                                                                                                                                                            │
+ │    │           segmentation.cpython-313.pyc                                                                                                                                                │
+ │                                                                                                                                                                                            │
+ │    │           social.cpython-313.pyc                                                                                                                                                      │
+ │                                                                                                                                                                                            │
+ │    │                                                                                                                                                                                       │
+ │                                                                                                                                                                                            │
+ │    └───__pycache__                                                                                                                                                                         │
+ │                                                                                                                                                                                            │
+ │            data_handler.cpython-313.pyc                                                                                                                                                    │
+ │                                                                                                                                                                                            │
+ │            main.cpython-313.pyc                                                                                                                                                            │
+ │                                                                                                                                                                                            │
+ │            __init__.cpython-313.pyc         

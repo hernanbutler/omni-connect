@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniMark - Kit de Marketing Omnicanal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class='bx bxs-network-chart'></i>
+                <span class="logo-text">OmniMark</span>
+            </div>
+            <button class="toggle-btn" id="toggleBtn">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <i class='bx bxs-dashboard'></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#segmentation" class="nav-item" data-section="segmentation">
+                <i class='bx bxs-group'></i>
+                <span>Segmentación IA</span>
+            </a>
+            <a href="#campaigns" class="nav-item" data-section="campaigns">
+                <i class='bx bxs-envelope'></i>
+                <span>Campañas Email</span>
+            </a>
+            <a href="#social" class="nav-item" data-section="social">
+                <i class='bx bxl-instagram-alt'></i>
+                <span>Redes Sociales</span>
+            </a>
+            <a href="#automation" class="nav-item" data-section="automation">
+                <i class='bx bxs-bot'></i>
+                <span>Automatización</span>
+            </a>
+            <a href="#ai-content" class="nav-item" data-section="ai-content">
+                <i class='bx bxs-magic-wand'></i>
+                <span>Generador IA</span>
+            </a>
+            <a href="#analytics" class="nav-item" data-section="analytics">
+                <i class='bx bxs-bar-chart-alt-2'></i>
+                <span>Análisis & Reportes</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/50?img=5" alt="Usuario">
+                <div class="user-info">
+                    <span class="user-name">Ana López</span>
+                    <span class="user-role">Plan Growth</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- El contenido se cargará aquí dinámicamente -->
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="js/config.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/views/dashboard.js"></script>
+    <script src="js/views/segmentation.js"></script>
+    <script src="js/views/campaigns.js?v=1.4"></script>
+    <script src="js/views/social.js"></script>
+    <script src="js/views/automation.js"></script>
+    <script src="js/views/ai-content.js"></script>
+    <script src="js/views/analytics.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>

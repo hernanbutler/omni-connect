@@ -1,0 +1,74 @@
+        <!-- AI Content Generator Section -->
+        <section id="ai-content" class="content-section">
+            <header class="section-header">
+                <div>
+                    <h1>Generador de Contenido IA</h1>
+                    <p class="subtitle">Crea copies personalizados para cada canal</p>
+                </div>
+            </header>
+
+            <div class="ai-generator">
+                <div class="generator-form">
+                    <div class="form-group">
+                        <label>Tipo de Contenido</label>
+                        <select id="contentType">
+                            <option>Email Marketing</option>
+                            <option>Post Instagram</option>
+                            <option>Tweet</option>
+                            <option>Anuncio Facebook</option>
+                            <option>Blog Post</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tono de Voz</label>
+                        <select id="toneVoice">
+                            <option>Profesional</option>
+                            <option>Casual y cercano</option>
+                            <option>Inspiracional</option>
+                            <option>Educativo</option>
+                            <option>Promocional</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tema o Producto</label>
+                        <input type="text" placeholder="Ej: Lanzamiento nuevo producto, Descuento verano...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Segmento Objetivo</label>
+                        <select id="targetSegment">
+                            <option>Compradores VIP</option>
+                            <option>Nuevos Suscriptores</option>
+                            <option>En Riesgo de Churn</option>
+                            <option>Todos los usuarios</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" id="generateBtn">
+                        <i class='bx bxs-magic-wand'></i>
+                        Generar Contenido con IA
+                    </button>
+                </div>
+
+                <div class="generator-output">
+                    <div class="output-header">
+                        <h4>Resultado Generado</h4>
+                        <div class="output-actions">
+                            <button class="btn-icon"><i class='bx bx-copy'></i></button>
+                            <button class="btn-icon"><i class='bx bx-download'></i></button>
+                        </div>
+                    </div>
+                    <div class="output-content" id="aiOutput">
+                        <p class="placeholder">Configura los parámetros y presiona "Generar" para obtener contenido personalizado creado por IA.</p>
+                    </div>
+                    <div class="output-variants">
+                        <button class="btn btn-secondary" id="generateVariants">
+                            <i class='bx bx-refresh'></i>
+                            Generar Variantes A/B
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
