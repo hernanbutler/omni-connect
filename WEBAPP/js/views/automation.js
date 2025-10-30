@@ -4,7 +4,7 @@ let currentFlows = [];
 let currentTemplates = [];
 let aiConfigured = false;
 
-// ========== RENDER HELPERS (prevent ReferenceError) ==========
+// ========== RENDER HELPERS (prevent ReferenceError) ========== 
 function renderKPIs(stats = {}) {
     const activeFlows = stats.active_flows ?? (currentFlows.filter(f => f.status === 'active').length || 0);
     const usersInFlows = stats.users_in_flows ?? (currentFlows.reduce((s, f) => s + (f.users_count || 0), 0) || 0);
@@ -78,9 +78,12 @@ function renderFlows() {
                 </div>
                 <p style="color:var(--text-secondary);">${flow.description || ''}</p>
                 <div style="display:flex; gap:0.5rem; margin-top:1rem;">
-                    <button class="btn-link" onclick="viewFlowDetails('${flow.id}')">Ver detalles del flujo</button>
+                    <button class="btn-link" onclick="viewFlowDetails('${flow.id}')">Ver detalles</button>
                     <button class="btn-link" style="color:var(--text-secondary);" onclick="toggleFlowStatus('${flow.id}','${flow.status}')">
                         <i class='bx bx-pause-circle'></i> ${flow.status === 'active' ? 'Pausar' : 'Activar'}
+                    </button>
+                    <button class="btn-link" style="color:var(--danger);" onclick="deleteFlow('${flow.id}')">
+                        <i class='bx bx-trash'></i> Eliminar
                     </button>
                 </div>
             </div>
@@ -140,24 +143,43 @@ async function loadAutomationContent() {
     const mainContent = document.getElementById('mainContent');
     if (!mainContent) return;
     
-    // Mostrar loading
     mainContent.innerHTML = '<div style="text-align: center; padding: 3rem;"><i class="bx bx-loader-alt bx-spin" style="font-size: 3rem; color: var(--primary);"></i><p>Cargando automatización...</p></div>';
     
     try {
-        // Cargar datos en paralelo
-        const [flowsResponse, templatesResponse, statsResponse, aiStatusResponse] = await Promise.all([
+        const [flowsResponse, templatesResponse, statsResponse, aiStatusResponse, usersCsvResponse] = await Promise.all([
             apiRequest('/api/v1/automation/flows'),
             apiRequest('/api/v1/automation/templates'),
             apiRequest('/api/v1/automation/stats'),
-            apiRequest('/api/v1/automation/ai/status')
+            apiRequest('/api/v1/automation/ai/status'),
+            fetch('../../data/usuarios.csv').then(res => res.text())
         ]);
         
         currentFlows = flowsResponse.data || [];
         currentTemplates = templatesResponse.data || [];
-        const stats = statsResponse.data || {};
+        let stats = statsResponse.data || {};
         aiConfigured = aiStatusResponse.data?.ai_configured || false;
         
-        // Renderizar la vista completa
+        if (!stats.automated_revenue) {
+            stats.automated_revenue = currentFlows.reduce((total, flow) => total + (flow.metrics?.revenue_generated || 0), 0);
+        }
+
+        // Procesar datos de usuarios
+        const users = parseCSV(usersCsvResponse);
+        const newUsersCount = users.filter(u => u['Tipo Usuario'] === 'new').length;
+        const inactiveUsersCount = users.filter(u => u['Tipo Usuario'] === 'inactive').length;
+
+        // Actualizar conteos en los flujos
+        currentFlows.forEach(flow => {
+            if (flow.trigger_type === 'new_user') {
+                flow.users_count = newUsersCount;
+            } else if (flow.trigger_type === 'inactive_user') {
+                flow.users_count = inactiveUsersCount;
+            }
+        });
+
+        // Recalcular stats
+        stats.users_in_flows = currentFlows.reduce((s, f) => s + (f.users_count || 0), 0);
+        
         renderAutomationView(stats);
         
     } catch (error) {
@@ -288,7 +310,8 @@ function showOptimizationResults(data) {
         </button>
     `;
     
-    createModal('<i class=\'bx bx-envelope\'></i> Subject Lines Optimizados', content, footer);
+    createModal("<i class='bx bx-envelope'></i> Subject Lines Optimizados", content, footer);
+
 }
 
 function showPerformanceAnalysis(data) {
@@ -370,7 +393,7 @@ function showPerformanceAnalysis(data) {
         </button>
     `;
     
-    createModal('<i class=\'bx bx-line-chart\'></i> Análisis de Rendimiento', content, footer);
+    createModal("<i class='bx bx-line-chart'></i> Análisis de Rendimiento", content, footer);
 }
 
 function showImprovementSuggestions(data) {
@@ -448,7 +471,7 @@ function showImprovementSuggestions(data) {
         </button>
     `;
     
-    createModal('<i class=\'bx bx-bulb\'></i> Sugerencias de Mejora', content, footer);
+    createModal("<i class='bx bx-bulb'></i> Sugerencias de Mejora", content, footer);
 }
 
 // ========== GESTIÓN DE PLANTILLAS ========== 
@@ -468,7 +491,7 @@ async function useTemplate(templateId) {
         
         if (response.status === 'success') {
             showNotification('Flujo creado exitosamente', 'success');
-            loadAutomationContent();
+            window.navigateToSection('automation');
         }
     } catch (error) {
         hideLoading();
@@ -572,7 +595,7 @@ async function submitCreateFlow() {
         if (response.status === 'success') {
             showNotification('Flujo creado exitosamente', 'success');
             document.querySelector('.modal-overlay').remove();
-            loadAutomationContent();
+            window.navigateToSection('automation');
         }
     } catch (error) {
         hideLoading();
@@ -591,6 +614,25 @@ function formatNumber(number) {
 }
 
 // ========== UTILIDADES ========== 
+
+function parseCSV(csvText) {
+    const lines = csvText.split('\n').filter(line => line.trim() !== '');
+    if (lines.length === 0) return [];
+    const headers = lines[0].split(',');
+    const data = [];
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(',');
+        if (values.length === headers.length) {
+            const entry = {};
+            for (let j = 0; j < headers.length; j++) {
+                entry[headers[j].trim()] = values[j].trim();
+            }
+            data.push(entry);
+        }
+    }
+    return data;
+}
+
 
 function formatTriggerType(type) {
     const types = {
@@ -699,13 +741,37 @@ async function toggleFlowStatus(flowId, currentStatus) {
         
         if (response.status === 'success') {
             showNotification(response.data.message, 'success');
-            loadAutomationContent(); // Recargar vista
+            window.navigateToSection('automation'); // Recargar vista
         }
     } catch (error) {
         console.error('Error toggle status:', error);
         showNotification('Error al cambiar estado del flujo', 'error');
     }
 }
+
+async function deleteFlow(flowId) {
+    if (!confirm('¿Estás seguro de que quieres eliminar este flujo? Esta acción no se puede deshacer.')) {
+        return;
+    }
+
+    try {
+        showLoading('Eliminando flujo...');
+        const response = await apiRequest(`/api/v1/automation/flows/${flowId}`, {
+            method: 'DELETE'
+        });
+        hideLoading();
+
+        if (response.status === 'success') {
+            showNotification('Flujo eliminado exitosamente', 'success');
+            window.navigateToSection('automation');
+        }
+    } catch (error) {
+        hideLoading();
+        console.error('Error deleting flow:', error);
+        showNotification('Error al eliminar el flujo: ' + error.message, 'error');
+    }
+}
+
 
 async function viewFlowDetails(flowId) {
     try {

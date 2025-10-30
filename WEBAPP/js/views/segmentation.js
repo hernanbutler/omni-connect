@@ -35,13 +35,11 @@ function formatNumber(value, defaultString = '-') {
 async function loadSegmentationContent() {
     const mainContent = document.getElementById('mainContent');
     
-    // Mostrar loading
+    // Mostrar loading usando la clase compartida
     mainContent.innerHTML = `
-        <div class="u-flex-center" style="height: 400px;">
-            <div class="u-text-center">
-                <i class='bx bx-loader bx-spin' style='font-size: 48px; color: #6366f1;'></i>
-                <p class="u-muted u-mt-1">Cargando segmentación...</p>
-            </div>
+        <div class="loading-state">
+            <i class='bx bx-loader bx-spin'></i>
+            <p>Cargando segmentación...</p>
         </div>
     `;
     
@@ -70,11 +68,11 @@ async function loadSegmentationContent() {
     } catch (error) {
         console.error('Error loading segmentation:', error);
         mainContent.innerHTML = `
-            <div class="u-text-center u-p-2">
-                <i class='bx bx-error-circle' style='font-size: 64px; color: #ef4444;'></i>
-                <h2 class="u-mt-1">Error al cargar segmentación</h2>
-                <p class="u-muted u-mt-1">${error.message}</p>
-                <button onclick="loadSegmentationContent()" class="btn btn-primary u-mt-1">
+            <div class="error-state">
+                <i class='bx bx-error-circle'></i>
+                <h2>Error al cargar segmentación</h2>
+                <p>${error.message}</p>
+                <button onclick="loadSegmentationContent()" class="btn btn-primary">
                     <i class='bx bx-refresh'></i> Reintentar
                 </button>
             </div>
@@ -136,7 +134,7 @@ function renderSegmentationView(data) {
                     <div class="kpi-content">
                         <span class="kpi-label">Clusters ML</span>
                         <h2 class="kpi-value">${formatNumber(kpis.segmentos_ia)}</h2>
-                        <span style="font-size: 0.75rem; color: var(--text-secondary);">K-Means</span>
+                        <span class="u-muted" style="font-size: 0.75rem;">K-Means</span>
                     </div>
                 </div>
             </div>
@@ -145,29 +143,33 @@ function renderSegmentationView(data) {
             <div class="charts-grid u-mb-1-5">
                 <div class="chart-card">
                     <h3>Distribución de Segmentos</h3>
-                    <canvas id="segmentDistributionChart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="segmentDistributionChart"></canvas>
+                    </div>
                 </div>
                 <div class="chart-card">
                     <h3>CLV Total por Segmento</h3>
-                    <canvas id="clvBySegmentChart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="clvBySegmentChart"></canvas>
+                    </div>
                 </div>
             </div>
 
             <!-- Segments Grid -->
             <h3 style="margin-bottom: 1.5rem;">Segmentos Existentes</h3>
             <div class="segments-grid">
-                ${generateSegmentCard('VIP Champions', 'compradores_vip', segments.compradores_vip, '#10b981', '🏆')}
-                ${generateSegmentCard('En Riesgo', 'en_riesgo_churn', segments.en_riesgo_churn, '#ef4444', '⚠️')}
-                ${generateSegmentCard('Promesa', 'promesa', segments.promesa, '#6366f1', '⭐')}
-                ${generateSegmentCard('Leales', 'leales', segments.leales, '#10b981', '💚')}
-                ${generateSegmentCard('Hibernando', 'hibernando', segments.hibernando, '#f59e0b', '😴')}
-                ${generateSegmentCard('Perdidos', 'perdidos', segments.perdidos, '#64748b', '💤')}
+                ${generateSegmentCard('VIP Champions', 'compradores_vip', segments.compradores_vip, 'vip', '🏆')}
+                ${generateSegmentCard('En Riesgo', 'en_riesgo_churn', segments.en_riesgo_churn, 'riesgo', '⚠️')}
+                ${generateSegmentCard('Promesa', 'promesa', segments.promesa, 'promesa', '⭐')}
+                ${generateSegmentCard('Leales', 'leales', segments.leales, 'leales', '💚')}
+                ${generateSegmentCard('Hibernando', 'hibernando', segments.hibernando, 'hibernando', '😴')}
+                ${generateSegmentCard('Perdidos', 'perdidos', segments.perdidos, 'perdidos', '💤')}
             </div>
         </section>
 
             <!-- AI Modal -->
         <div id="aiInsightsModal" class="modal" style="display: none;">
-            <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h3><i class='bx bxs-brain'></i> Insights de IA - <span id="modalSegmentName"></span></h3>
                     <button class="modal-close" onclick="closeAIModal()">&times;</button>
@@ -177,25 +179,24 @@ function renderSegmentationView(data) {
         </div>
     `;
     
-    // Añadir estilos
-    addSegmentationStyles();
     // Animate cards
     animateElements();
 }
 
-function generateSegmentCard(title, key, data, color, emoji) {
+function generateSegmentCard(title, key, data, colorKey, emoji) {
     const safeData = data || {};
+    const cardClass = `segment-card-${colorKey}`;
     return `
-        <div class="segment-card" style="border-left: 4px solid ${color};">
+        <div class="segment-card ${cardClass}">
             <div class="segment-header">
                 <h4>${emoji} ${title}</h4>
                 <span class="segment-badge">${formatNumber(safeData.usuarios)} usuarios (${formatNumber(safeData.porcentaje)}%)</span>
             </div>
             <p>${getSegmentDescription(key)}</p>
-            <div class="segment-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem;">
+            <div class="segment-stats">
                 ${getSegmentStats(key, safeData)}
             </div>
-            <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;" onclick="generateAIInsights('${key}')">
+            <button class="btn btn-secondary" onclick="generateAIInsights('${key}')">
                 <i class='bx bxs-magic-wand'></i> Generar Insights con IA
             </button>
         </div>
@@ -382,10 +383,10 @@ async function generateAIInsights(segmentName) {
     modalTitle.textContent = segmentDisplayNames[segmentName] || segmentName;
     
     modalContent.innerHTML = `
-        <div style="text-align: center; padding: 2rem;">
-            <i class='bx bx-loader bx-spin' style='font-size: 48px; color: var(--primary);'></i>
-            <p style="margin-top: 1rem; color: var(--text-secondary);">Generando insights con ChatGPT...</p>
-            <p style="font-size: 0.85rem; color: var(--text-secondary);">Esto puede tomar unos segundos</p>
+        <div class="modal-loading">
+            <i class='bx bx-loader bx-spin'></i>
+            <p>Generando insights con ChatGPT...</p>
+            <p style="font-size: 0.85rem;">Esto puede tomar unos segundos</p>
         </div>
     `;
     
@@ -397,16 +398,16 @@ async function generateAIInsights(segmentName) {
         
         if (!status.configured) {
             modalContent.innerHTML = `
-                <div class="ai-persona-card" style="border-left: 4px solid var(--danger);">
+                <div class="ai-persona-card modal-error">
                     <h4><i class='bx bx-error-circle'></i> API de OpenAI no configurada</h4>
                     <p>${status.message}</p>
-                    <p style="margin-top: 1rem;">Para usar esta función:</p>
-                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <p>Para usar esta función:</p>
+                    <ol>
                         <li>Crea un archivo <code>.env</code> en la raíz del proyecto</li>
                         <li>Añade tu API key: <code>OPENAI_API_KEY=tu-api-key-aqui</code></li>
                         <li>Reinicia el servidor backend</li>
                     </ol>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+                    <p>
                         Obtén tu API key en: <a href="https://platform.openai.com/api-keys" target="_blank">https://platform.openai.com/api-keys</a>
                     </p>
                 </div>
@@ -429,11 +430,11 @@ async function generateAIInsights(segmentName) {
     } catch (error) {
         console.error('Error generating AI insights:', error);
         modalContent.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <i class='bx bx-error-circle' style='font-size: 48px; color: var(--danger);'></i>
-                <h3 style="margin-top: 1rem;">Error al generar insights</h3>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">${error.message}</p>
-                <button onclick="closeAIModal()" class="btn btn-secondary" style="margin-top: 1.5rem;">Cerrar</button>
+            <div class="modal-error">
+                <i class='bx bx-error-circle'></i>
+                <h3>Error al generar insights</h3>
+                <p>${error.message}</p>
+                <button onclick="closeAIModal()" class="btn btn-secondary">Cerrar</button>
             </div>
         `;
     }
@@ -450,42 +451,42 @@ function renderSegmentationAIInsights(personaData, recsData) {
             html += `
                 <div class="ai-persona-card">
                     <h4><i class='bx bxs-user-circle'></i> Perfil de Cliente</h4>
-                    <div style="white-space: pre-line;">${persona.texto_completo}</div>
+                    <div class="u-pre-line">${persona.texto_completo}</div>
                 </div>
             `;
         } else {
             html += `
                 <div class="ai-persona-card">
                     <h4><i class='bx bxs-user-circle'></i> Perfil de Cliente</h4>
-                    <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                    <div class="ai-persona-details">
                         <div>
-                            <strong style="color: var(--primary);">👤 Nombre:</strong> ${persona.nombre || 'N/A'}
-                            <span style="margin-left: 1rem; color: var(--text-secondary);">Edad: ${persona.edad || 'N/A'}</span>
+                            <strong class="u-text-primary">👤 Nombre:</strong> <span class="user-name">${persona.nombre || 'N/A'}</span>
+                            <span class="user-age">Edad: ${persona.edad || 'N/A'}</span>
                         </div>
                         <div>
-                            <strong style="color: var(--primary);">💼 Ocupación:</strong> ${persona.ocupacion || 'N/A'}
+                            <strong class="u-text-primary">💼 Ocupación:</strong> ${persona.ocupacion || 'N/A'}
                         </div>
                         <div>
-                            <strong style="color: var(--primary);">💰 Nivel Socioeconómico:</strong> ${persona.nivel_socioeconomico || 'N/A'}
+                            <strong class="u-text-primary">💰 Nivel Socioeconómico:</strong> ${persona.nivel_socioeconomico || 'N/A'}
                         </div>
                         <div>
-                            <strong style="color: var(--primary);">🛍️ Comportamiento:</strong>
-                            <p style="margin-top: 0.5rem; color: var(--text-secondary);">${persona.comportamiento || 'N/A'}</p>
+                            <strong class="u-text-primary">🛍️ Comportamiento:</strong>
+                            <p>${persona.comportamiento || 'N/A'}</p>
                         </div>
                         <div>
-                            <strong style="color: var(--primary);">🎯 Motivaciones:</strong>
-                            <p style="margin-top: 0.5rem; color: var(--text-secondary);">${persona.motivaciones || 'N/A'}</p>
+                            <strong class="u-text-primary">🎯 Motivaciones:</strong>
+                            <p>${persona.motivaciones || 'N/A'}</p>
                         </div>
                         <div>
-                            <strong style="color: var(--primary);">😰 Pain Points:</strong>
-                            <p style="margin-top: 0.5rem; color: var(--text-secondary);">${persona.pain_points || 'N/A'}</p>
+                            <strong class="u-text-primary">😰 Pain Points:</strong>
+                            <p>${persona.pain_points || 'N/A'}</p>
                         </div>
                         <div>
-                            <strong style="color: var(--primary);">📱 Canales Preferidos:</strong>
-                            <p style="margin-top: 0.5rem; color: var(--text-secondary);">${persona.canales_preferidos || 'N/A'}</p>
+                            <strong class="u-text-primary">📱 Canales Preferidos:</strong>
+                            <p>${persona.canales_preferidos || 'N/A'}</p>
                         </div>
                         ${persona.frase_descriptiva ? `
-                            <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary); margin-top: 0.5rem;">
+                            <div class="ai-persona-quote">
                                 <em>"${persona.frase_descriptiva}"</em>
                             </div>
                         ` : ''}
@@ -502,7 +503,7 @@ function renderSegmentationAIInsights(personaData, recsData) {
             html += `
                 <div class="ai-recommendations-card">
                     <h4><i class='bx bxs-bulb'></i> Recomendaciones de Marketing</h4>
-                    <div style="white-space: pre-line;">${recs.texto_completo}</div>
+                    <div class="u-pre-line">${recs.texto_completo}</div>
                 </div>
             `;
         } else if (recs.recomendaciones && recs.recomendaciones.length > 0) {
@@ -510,23 +511,19 @@ function renderSegmentationAIInsights(personaData, recsData) {
                 <div class="ai-recommendations-card">
                     <h4><i class='bx bxs-bulb'></i> Recomendaciones de Marketing</h4>
                     ${recs.prioridad_general ? `
-                        <p style="margin-bottom: 1rem;"><strong>Prioridad:</strong> ${recs.prioridad_general}</p>
+                        <p><strong>Prioridad:</strong> ${recs.prioridad_general}</p>
                     ` : ''}
                     ${recs.justificacion ? `
-                        <p style="margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
-                            ${recs.justificacion}
-                        </p>
+                        <p class="ai-justification">${recs.justificacion}</p>
                     ` : ''}
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div class="ai-recommendations-list">
                         ${recs.recomendaciones.map((rec, index) => `
                             <div class="ai-recommendation-item">
-                                <h5 style="margin: 0 0 0.75rem 0; color: var(--primary);">
-                                    ${index + 1}. ${rec.accion || 'Acción recomendada'}
-                                </h5>
-                                <div style="display: grid; gap: 0.5rem; font-size: 0.95rem;">
+                                <h5>${index + 1}. ${rec.accion || 'Acción recomendada'}</h5>
+                                <div class="ai-recommendation-details">
                                     <div><strong>📢 Canal:</strong> ${rec.canal || 'N/A'}</div>
                                     <div><strong>💬 Mensaje/Oferta:</strong> ${rec.mensaje_oferta || 'N/A'}</div>
-                                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                    <div class="ai-recommendation-tags">
                                         <span class="ai-tag" style="background: ${getROIColor(rec.roi_estimado)};">
                                             ROI: ${rec.roi_estimado || 'N/A'}
                                         </span>
@@ -545,9 +542,9 @@ function renderSegmentationAIInsights(personaData, recsData) {
     
     if (html === '') {
         html = `
-            <div style="text-align: center; padding: 2rem;">
-                <i class='bx bx-error-circle' style='font-size: 48px; color: var(--warning);'></i>
-                <p style="margin-top: 1rem;">No se pudieron generar insights para este segmento.</p>
+            <div class="modal-error">
+                <i class='bx bx-error-circle'></i>
+                <p>No se pudieron generar insights para este segmento.</p>
             </div>
         `;
     }

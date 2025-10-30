@@ -3,8 +3,7 @@ import os
 from pathlib import Path
 
 # Usar rutas relativas desde la raíz del proyecto
-BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_PATH = BASE_DIR / "data"
+DATA_PATH = Path("data")
 USERS_FILE = DATA_PATH / "usuarios.csv"
 CAMPAIGNS_FILE = DATA_PATH / "campanas_email.csv"
 SOCIAL_POSTS_FILE = DATA_PATH / "posts_redes_sociales.csv"

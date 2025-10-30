@@ -1,9 +1,9 @@
 async function loadCampaignsContent() {
     const mainContent = document.getElementById('mainContent');
     mainContent.innerHTML = `
-        <div style="text-align: center; padding: 64px 24px;">
-            <i class='bx bx-loader-alt bx-spin' style='font-size: 48px; color: #6366f1;'></i>
-            <p style="margin-top: 16px; color: #64748b;">Cargando campañas...</p>
+        <div class="loading-state">
+            <i class='bx bx-loader-alt bx-spin'></i>
+            <p>Cargando campañas...</p>
         </div>
     `;
 
@@ -35,18 +35,17 @@ async function loadCampaignsContent() {
 
         mainContent.innerHTML = renderCampaignsHTML(overview, activeCampaigns, templates, insights);
 
-        addSegmentationStyles();
         setupCampaignsEventListeners();
         animateElements();
 
     } catch (error) {
         console.error('[loadCampaignsContent] Error:', error);
         mainContent.innerHTML = `
-            <div style="text-align: center; padding: 64px 24px;">
-                <i class='bx bx-error' style='font-size: 48px; color: #ef4444;'></i>
-                <h2 style="margin-top: 24px; color: #0f172a;">Error al cargar campañas</h2>
-                <p style="color: #64748b; margin-top: 8px;">${error.message}</p>
-                <button onclick="loadCampaignsContent()" class="btn btn-primary" style="margin-top: 24px;">
+            <div class="error-state">
+                <i class='bx bx-error'></i>
+                <h2>Error al cargar campañas</h2>
+                <p>${error.message}</p>
+                <button onclick="loadCampaignsContent()" class="btn btn-primary">
                     <i class='bx bx-refresh'></i> Reintentar
                 </button>
             </div>
@@ -60,7 +59,7 @@ function renderCampaignsHTML(overview, campaigns, templates, insights) {
             return renderCampaignCard(campaign);
         } catch (e) {
             console.error('[Render Error] Failed to render campaign card:', e, campaign);
-            return '<div class="segment-card error-card"><p>Error al mostrar esta campaña</p></div>';
+            return '<div class="card error-card"><p>Error al mostrar esta campaña</p></div>';
         }
     }).join('');
 
@@ -69,7 +68,7 @@ function renderCampaignsHTML(overview, campaigns, templates, insights) {
             return renderTemplateItem(template);
         } catch (e) {
             console.error('[Render Error] Failed to render template item:', e, template);
-            return '<div class="activity-item error-card"><p>Error al mostrar esta plantilla</p></div>';
+            return '<div class="list-item error-card"><p>Error al mostrar esta plantilla</p></div>';
         }
     }).join('');
 
@@ -102,61 +101,57 @@ function renderCampaignsHTML(overview, campaigns, templates, insights) {
             ${renderKpiCard('Tasa de Rebote', `${overview.bounce_rate || 0}%`, overview.bounce_trend, 'bx-error-circle', 'orange', true)}
         </div>
 
-        <div class="campaign-performance">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div class="card">
+            <div class="section-header">
                 <h3>Campañas Activas y Recientes</h3>
-                <button class="btn btn-secondary" onclick="loadCampaignsContent()" style="font-size: 0.875rem;">
+                <button class="btn btn-secondary" onclick="loadCampaignsContent()">
                     <i class='bx bx-refresh'></i> Actualizar
                 </button>
             </div>
-            <div class="segments-grid" id="campaigns-active-grid">
+            <div class="campaigns-grid" id="campaigns-active-grid">
                 ${campaigns.length > 0 ? campaignsHTML : `
-                    <div class="segment-card" style="text-align: center; padding: 2rem;">
-                        <i class='bx bx-info-circle' style='font-size: 48px; color: var(--text-secondary); opacity: 0.5;'></i>
-                        <p style="margin-top: 1rem; color: var(--text-secondary);">No hay campañas disponibles</p>
+                    <div class="no-data-card">
+                        <i class='bx bx-info-circle'></i>
+                        <p>No hay campañas disponibles</p>
                     </div>
                 `}
             </div>
         </div>
 
-        <div class="activity-section" id="campaigns-templates-section" style="margin-top: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div class="card">
+            <div class="section-header">
                 <h3>Plantillas de Email Disponibles</h3>
-                <button class="btn btn-secondary" onclick="generateSubjectLines(null)" style="font-size: 0.875rem;">
+                <button class="btn btn-secondary" onclick="generateSubjectLines(null)">
                     <i class='bx bx-brain'></i> Generar Asuntos con IA
                 </button>
             </div>
-            <div class="activity-list" id="campaigns-templates-list">
+            <div class="list" id="campaigns-templates-list">
                 ${templates.length > 0 ? templatesHTML : `
-                    <div class="activity-item" style="justify-content: center;">
-                        <i class='bx bx-info-circle' style='font-size: 24px; color: var(--text-secondary);'></i>
-                        <span style="margin-left: 1rem; color: var(--text-secondary);">No hay plantillas disponibles</span>
+                    <div class="no-data-card">
+                        <i class='bx bx-info-circle'></i>
+                        <p>No hay plantillas disponibles</p>
                     </div>
                 `}
             </div>
         </div>
 
-        <div class="campaign-performance" style="margin-top: 2rem;">
-             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div class="card">
+             <div class="section-header">
                 <div>
                     <h3>Insights Inteligentes</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">
-                        Recomendaciones personalizadas basadas en tu histórico
-                    </p>
+                    <p class="subtitle">Recomendaciones personalizadas basadas en tu histórico</p>
                 </div>
-                <button class="btn btn-secondary" onclick="loadCampaignsContent()" style="font-size: 0.875rem;">
+                <button class="btn btn-secondary" onclick="loadCampaignsContent()">
                     <i class='bx bx-brain'></i> Actualizar Insights
                 </button>
             </div>
-            <div class="ai-insights-container">
-                <div class="segment-card" id="ai-insights-card">
-                    ${insights.length > 0 ? `<div style="display: grid; gap: 1rem;">${insightsHTML}</div>` : `
-                        <div style="text-align: center; padding: 2rem;">
-                            <i class='bx bx-brain' style='font-size: 48px; color: var(--primary); opacity: 0.5;'></i>
-                            <p style="margin-top: 1rem; color: var(--text-secondary);">No hay suficientes datos para generar insights.</p>
-                        </div>
-                    `}
-                </div>
+            <div class="insights-grid">
+                ${insights.length > 0 ? insightsHTML : `
+                    <div class="no-data-card">
+                        <i class='bx bx-brain'></i>
+                        <p>No hay suficientes datos para generar insights.</p>
+                    </div>
+                `}
             </div>
         </div>
     </section>
@@ -187,18 +182,22 @@ function renderKpiCard(label, value = 'N/A', trend = 0, icon = 'bx-question-mark
 
 function renderCampaignCard(campaign = {}) {
     const status = campaign.status || 'Desconocido';
+    // Create a CSS-friendly class from the status
+    const statusClass = status.toLowerCase().replace(/\s+/g, '-');
+
+    // Determine status text and class for "Completada"
+    const isCompleted = (campaign.status || '').toLowerCase() === 'completada';
+    const statusText = isCompleted ? 'Completada' : status;
+
     return `
-        <div class="segment-card" data-campaign-id="${campaign.id || ''}">
-            <div class="segment-header">
-                <h4>${campaign.name || 'Campaña sin nombre'}</h4>
-                <span class="segment-badge ${status.toLowerCase() === 'activa' ? 'success' : ''}">${status}</span>
+        <div class="card" data-campaign-id="${campaign.id || ''}">
+            <div class="section-header" style="margin-bottom: 1rem; align-items: center;">
+                <h3 style="font-size: 1.1rem;">${campaign.name || 'Campaña sin nombre'}</h3>
+                <span class="campaign-status status-${statusClass}">${statusText}</span>
             </div>
-            <p>${getCampaignDescription(campaign)}</p>
-            <div class="segment-stats">
-                <span><i class='bx bx-group'></i> ${(campaign.recipients || 0).toLocaleString()} destinatarios</span>
-                <span><i class='bx bx-${status === 'Programada' ? 'calendar' : 'time'}'></i> ${campaign.time_info || 'N/A'}</span>
-            </div>
-            <div class="automation-metrics">
+            <p class="subtitle" style="margin-top: -0.5rem; margin-bottom: 1rem;">${getCampaignDescription(campaign)}</p>
+            
+            <div class="campaign-card-metrics">
                 <div class="metric">
                     <span class="metric-value">${campaign.open_rate || 0}%</span>
                     <span class="metric-label">Apertura</span>
@@ -212,12 +211,13 @@ function renderCampaignCard(campaign = {}) {
                     <span class="metric-label">Conversión</span>
                 </div>
             </div>
-            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                <button class="btn-link" onclick="analyzeCampaignWithAI('${campaign.id || ''}')">
-                    <i class='bx bx-brain'></i> Analizar con IA
+
+            <div class="campaign-card-actions">
+                <button class="btn btn-secondary" onclick="viewCampaignDetails('${campaign.id || ''}')">
+                    Ver Detalles
                 </button>
-                <button class="btn-link" onclick="viewCampaignDetails('${campaign.id || ''}')">
-                    Ver detalles
+                <button class="btn btn-primary" onclick="analyzeCampaignWithAI('${campaign.id || ''}')">
+                    <i class='bx bx-brain'></i> Analizar
                 </button>
             </div>
         </div>
@@ -226,14 +226,12 @@ function renderCampaignCard(campaign = {}) {
 
 function renderTemplateItem(template = {}) {
     return `
-        <div class="activity-item">
-            <i class='bx ${template.icon || 'bx-file'}' style="font-size: 24px; color: var(--primary);"></i>
-            <div style="flex: 1;">
+        <div class="list-item">
+            <i class='list-item-icon bx ${template.icon || 'bx-file'}'></i>
+            <div class="list-item-content">
                 <strong>${template.name || 'Plantilla sin nombre'}</strong>
-                <span style="display: block; color: var(--text-secondary); font-size: 0.875rem;">
-                    ${template.description || 'Sin descripción.'}
-                </span>
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+                <span>${template.description || 'Sin descripción.'}</span>
+                <div class="template-list-item-metrics">
                     <span><i class='bx bx-envelope-open'></i> ${template.avg_open_rate || 0}% apertura</span>
                     <span><i class='bx bx-mouse-alt'></i> ${template.avg_ctr || 0}% CTR</span>
                 </div>
@@ -292,42 +290,46 @@ function showAIAnalysisModal(campaignId, data, isLoading) {
     modal.id = 'aiAnalysisModal';
     modal.className = 'modal';
     
+    let modalHTML = '';
     if (isLoading) {
-        modal.innerHTML = `
-            <div class="modal-content" style="max-width: 600px; padding: 3rem; text-align: center;">
-                <i class='bx bx-brain bx-spin' style='font-size: 64px; color: var(--primary);'></i>
-                <h3 style="margin-top: 1.5rem;">Analizando campaña con IA...</h3>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Esto puede tomar unos segundos</p>
+        modalHTML = `
+            <div class="modal-content">
+                <div class="modal-loading">
+                    <i class='bx bx-brain bx-spin'></i>
+                    <h3>Analizando campaña con IA...</h3>
+                    <p>Esto puede tomar unos segundos</p>
+                </div>
             </div>
         `;
     } else {
         const analysis = data.analysis;
         const campaign = data.campaign;
-        modal.innerHTML = `
-            <div class="modal-content" style="max-width: 800px;">
+        modalHTML = `
+            <div class="modal-content">
                 <div class="modal-header">
                     <h3><i class='bx bx-brain'></i> Análisis IA: ${campaign.name}</h3>
                     <button class="modal-close" onclick="closeAIAnalysisModal()"><i class='bx bx-x'></i></button>
                 </div>
                 <div class="modal-body">
-                    ${analysis.performance_summary ? `<div class="ai-persona-card"><h4><i class='bx bx-bar-chart-alt-2'></i> Resumen de Rendimiento</h4><p>${analysis.performance_summary}</p></div>` : ''}
-                    <div class="ai-persona-card">
+                    ${analysis.performance_summary ? `<div class="ai-modal-card"><h4><i class='bx bx-bar-chart-alt-2'></i> Resumen de Rendimiento</h4><p>${analysis.performance_summary}</p></div>` : ''}
+                    <div class="ai-modal-card">
                         <h4><i class='bx bx-bulb'></i> Insights Clave</h4>
-                        <ul style="margin: 0; padding-left: 1.5rem;">${(analysis.insights || []).map(insight => `<li style="margin-bottom: 0.75rem;">${insight}</li>`).join('')}</ul>
+                        <ul>${(analysis.insights || []).map(insight => `<li>${insight}</li>`).join('')}</ul>
                     </div>
-                    <div class="ai-recommendations-card">
+                    <div class="ai-modal-card">
                         <h4><i class='bx bx-trending-up'></i> Recomendaciones</h4>
                         ${(analysis.recommendations || []).map((rec, idx) => `<div class="ai-recommendation-item"><strong>${idx + 1}. </strong>${rec}</div>`).join('')}
                     </div>
-                    ${analysis.predicted_improvement ? `<div class="ai-persona-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;"><h4 style="color: white;"><i class='bx bx-trophy'></i> Mejora Esperada</h4><p style="color: white; opacity: 0.95;">${analysis.predicted_improvement}</p></div>` : ''}
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    ${analysis.predicted_improvement ? `<div class="ai-modal-card ai-modal-card-gradient"><h4><i class='bx bx-trophy'></i> Mejora Esperada</h4><p>${analysis.predicted_improvement}</p></div>` : ''}
+                    <div class="campaign-card-actions">
                         <button class="btn btn-primary" onclick="generateSubjectLines('${campaignId}')"><i class='bx bx-bulb'></i> Generar Asuntos con IA</button>
-                        <button class="btn btn-secondary" onclick="closeAIAnalysisModal()">Cerrar</button>
+                        <button class="btn-secondary" onclick="closeAIAnalysisModal()">Cerrar</button>
                     </div>
                 </div>
             </div>
         `;
     }
+    modal.innerHTML = modalHTML;
     document.body.appendChild(modal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeAIAnalysisModal(); });
 }
@@ -364,40 +366,42 @@ function showSubjectLinesModal(variants, isLoading) {
     modal.id = 'subjectLinesModal';
     modal.className = 'modal';
     
+    let modalHTML = '';
     if (isLoading) {
-        modal.innerHTML = `
-            <div class="modal-content" style="max-width: 600px; padding: 3rem; text-align: center;">
-                <i class='bx bx-bulb bx-spin' style='font-size: 64px; color: var(--primary);'></i>
-                <h3 style="margin-top: 1.5rem;">Generando asuntos optimizados...</h3>
-                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Creando variantes persuasivas con IA</p>
+        modalHTML = `
+            <div class="modal-content">
+                 <div class="modal-loading">
+                    <i class='bx bx-bulb bx-spin'></i>
+                    <h3>Generando asuntos optimizados...</h3>
+                    <p>Creando variantes persuasivas con IA</p>
+                </div>
             </div>
         `;
     } else {
-        modal.innerHTML = `
-            <div class="modal-content" style="max-width: 700px;">
+        modalHTML = `
+            <div class="modal-content">
                 <div class="modal-header">
                     <h3><i class='bx bx-envelope'></i> Líneas de Asunto Generadas con IA</h3>
                     <button class="modal-close" onclick="closeSubjectLinesModal()"><i class='bx bx-x'></i></button>
                 </div>
                 <div class="modal-body">
-                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Haz clic en cualquier asunto para copiarlo al portapapeles</p>
+                    <p>Haz clic en cualquier asunto para copiarlo al portapapeles</p>
                     ${variants.map((subject, idx) => `
-                        <div class="ai-recommendation-item" style="cursor: pointer; transition: all 0.2s;" onclick="copyToClipboard('''${subject.replace(/'/g, "'")}''', ${idx})" id="subject-${idx}">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span><strong>${idx + 1}.</strong> ${subject}</span>
-                                <i class='bx bx-copy' style="color: var(--primary); font-size: 20px;"></i>
-                            </div>
+                        <div class="subject-line-item" onclick="copyToClipboard('''${subject.replace(/'/g, "'''")}''', ${idx})" id="subject-${idx}">
+                            <span><strong>${idx + 1}.</strong> ${subject}</span>
+                            <i class='bx bx-copy'></i>
                         </div>
                     `).join('')}
-                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
-                        <h4 style="margin: 0 0 0.5rem 0; font-size: 0.9rem;"><i class='bx bx-info-circle'></i> Consejo</h4>
-                        <p style="margin: 0; font-size: 0.875rem; color: var(--text-secondary);">Prueba A/B testing con estas variantes para encontrar cuál resuena mejor con tu audiencia.</p>
+                    <div class="ai-modal-card">
+                        <h4><i class='bx bx-info-circle'></i> Consejo</h4>
+                        <p>Prueba A/B testing con estas variantes para encontrar cuál resuena mejor con tu audiencia.</p>
                     </div>
-                    <button class="btn btn-secondary" onclick="closeSubjectLinesModal()" style="margin-top: 1rem; width: 100%;">Cerrar</button>
+                    <button class="btn btn-secondary" onclick="closeSubjectLinesModal()">Cerrar</button>
                 </div>
             </div>
         `;
     }
+    modal.innerHTML = modalHTML;
     document.body.appendChild(modal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeSubjectLinesModal(); });
 }

@@ -1,0 +1,60 @@
+/* Responsive */
+@media (max-width: 1200px) {
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .ai-generator {
+        grid-template-columns: 1fr;
+    }
+    
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: var(--sidebar-collapsed);
+    }
+    
+    .sidebar .logo-text,
+    .sidebar .nav-item span,
+    .sidebar .user-info {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-collapsed);
+        padding: 1rem;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .campaign-performance > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .content-section > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .kpi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}

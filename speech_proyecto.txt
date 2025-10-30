@@ -1,0 +1,52 @@
+Guion Discurso OmniConnect (5 minutos)
+
+---
+
+**(Parte 1: Presentación Breve - 1 minuto)**
+
+"Buenos días a todos. Hoy quiero presentarles OmniConnect, la plataforma web diseñada para unificar y simplificar todas las facetas del marketing digital de una empresa.
+
+En el mundo actual, gestionar la presencia online implica hacer malabares con múltiples herramientas: una para redes sociales, otra para email marketing, una tercera para analizar datos... OmniConnect nace para solucionar esa fragmentación. Es un centro de operaciones único desde donde puedes controlar, planificar y medir toda tu estrategia digital."
+
+---
+
+**(Parte 2: El Proceso de Onboarding - 1.5 minutos)**
+
+"Empezar con OmniConnect es increíblemente sencillo. Nuestro proceso de onboarding te guía en tres pasos clave:
+
+Primero, la **configuración inicial**. Aquí registras tu empresa, indicando su nombre, el sector al que pertenece y otros datos esenciales. Esta información nos ayuda a personalizar las sugerencias y la experiencia dentro de la plataforma.
+
+Segundo, llega el momento de **elegir**. OmniConnect es modular. Puedes activar las herramientas que realmente necesitas. ¿Quieres enfocarte en la gestión de redes sociales? Activa el módulo 'Social'. ¿Tu prioridad es el email marketing? Selecciona 'Campaigns'. Puedes elegir entre analítica, segmentación, automatización y más, creando una solución a tu medida.
+
+Finalmente, todo converge en el **cronograma**. Una vez que has configurado tu espacio, el cronograma se convierte en tu principal herramienta de planificación. Aquí es donde podrás visualizar y organizar todas tus acciones de marketing en un calendario interactivo."
+
+---
+
+**(Parte 3: El Cronograma y el Botón Flotante - 0.5 minutos)**
+
+"El cronograma es el corazón de la organización en OmniConnect. Te permite agendar publicaciones, envíos de campañas y tareas importantes.
+
+Y para que la planificación sea aún más ágil, hemos integrado un **botón flotante** que te acompaña en toda la aplicación. Con un solo clic, este botón te permite añadir una nueva tarea o programar contenido sin necesidad de interrumpir tu trabajo. Es la funcionalidad clave al alcance de tu mano, en todo momento."
+
+---
+
+**(Parte 4: Un Vistazo a las Vistas Principales - 1.5 minutos)**
+
+"Además del cronograma, OmniConnect se organiza en varias vistas especializadas:
+
+*   **Dashboard:** Tu panel de control. Te da una visión global y en tiempo real de tus métricas más importantes.
+*   **Social:** El centro de mando para tus redes sociales. Desde aquí creas, programas y analizas tus publicaciones.
+*   **Campaigns:** Tu herramienta para el email marketing. Diseña, envía y mide el rendimiento de tus campañas de correo.
+*   **Analytics:** Para quienes aman los datos. Aquí puedes explorar en profundidad el rendimiento, entender a tu audiencia y descubrir oportunidades de mejora.
+*   **Segmentation:** Te permite crear grupos de clientes específicos para dirigir tus mensajes de forma más efectiva.
+*   **AI-Content:** Un asistente con inteligencia artificial que te ayuda a generar ideas y textos creativos para tus publicaciones y correos.
+
+Cada vista está diseñada para ser intuitiva y potente, dándote control total sobre cada área de tu marketing."
+
+---
+
+**(Parte 5: Conclusión - 0.5 minutos)**
+
+"En resumen, OmniConnect centraliza la complejidad del marketing digital en una plataforma web simple, modular y potente. Desde el rápido onboarding hasta la gestión diaria en sus distintas vistas, todo está pensado para que ahorres tiempo, tomes mejores decisiones y lleves tu estrategia digital al siguiente nivel.
+
+Muchas gracias."

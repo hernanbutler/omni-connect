@@ -37,7 +37,7 @@ Más que una herramienta, es una **brújula de comunicación** que organiza, aut
     </tr>
     <tr>
       <td><b>José Ardiles Ugaz</b></td>
-      <td>Product Manager / Data Scientist</td>
+      <td> Data Scientist</td>
     </tr>
   </tbody>
 </table>
@@ -178,6 +178,41 @@ Guías y plantillas para definir:
 
 ---
 
+## 🚀 Cómo Ejecutar el Proyecto
+
+Para poner en marcha el Kit de Marketing Omnicanal, necesitas ejecutar el backend (servidor) y la aplicación web (cliente) por separado.
+
+### 1. Ejecutar el Backend (Servidor)
+
+El backend está construido con Python y FastAPI.
+
+1.  **Abre una terminal** en la raíz del proyecto.
+2.  **Asegúrate de tener Python instalado** (versión 3.8 o superior).
+3.  **Ejecuta el siguiente comando** para instalar las dependencias y arrancar el servidor:
+
+    ```bash
+    .\run_backend.bat
+    ```
+
+    *Este comando instalará todas las librerías necesarias desde `requirements.txt` y dejará el servidor corriendo en `http://localhost:8000`.*
+
+### 2. Ejecutar la Aplicación Web (Cliente)
+
+La aplicación web principal se sirve desde la carpeta `WEBAPP`.
+
+1.  **Abre una nueva terminal** en la raíz del proyecto.
+2.  **Ejecuta el siguiente comando** para iniciar el servidor web y abrir la aplicación en tu navegador:
+
+    ```bash
+    .\run_webapp.bat
+    ```
+
+    *Este comando utilizará Python para servir los archivos de la aplicación en `http://localhost:5500` y la abrirá automáticamente.*
+
+### Alternativa: Ejecutar la aplicación con React (`my-app`)
+
+---
+
 ## 📈 Futuros Desarrollos  
 
 - Integración con más plataformas CRM.  
@@ -200,60 +235,15 @@ Guías y plantillas para definir:
 
 Este proyecto está licenciado bajo la **Licencia MIT** – ver archivo [LICENSE](LICENSE.txt) para más detalles.  
 
----
-
- │    C:\USERS\JOSE-\DESKTOP\PYTHON\NO COUNTRY4\OMNI_CONNECT\BACKEND                                                                                                                          │
- │                                                                                                                                                                                            │
- │    │   data_handler.py                                                                                                                                                                     │
- │                                                                                                                                                                                            │
- │    │   main.py                                                                                                                                                                             │
- │                                                                                                                                                                                            │
- │    │   requirements.txt                                                                                                                                                                    │
- │                                                                                                                                                                                            │
- │    │   __init__.py                                                                                                                                                                         │
- │                                                                                                                                                                                            │
- │    │                                                                                                                                                                                       │
- │                                                                                                                                                                                            │
- │    ├───routers                                                                                                                                                                             │
- │                                                                                                                                                                                            │
- │    │   │   ai_content.py                                                                                                                                                                   │
- │                                                                                                                                                                                            │
- │    │   │   analytics.py                                                                                                                                                                    │
- │                                                                                                                                                                                            │
- │    │   │   automation.py                                                                                                                                                                   │
- │                                                                                                                                                                                            │
- │    │   │   campaigns.py                                                                                                                                                                    │
- │                                                                                                                                                                                            │
- │    │   │   dashboard.py                                                                                                                                                                    │
- │                                                                                                                                                                                            │
- │    │   │   segmentation.py                                                                                                                                                                 │
- │                                                                                                                                                                                            │
- │    │   │   social.py                                                                                                                                                                       │
- │                                                                                                                                                                                            │
- │    │   │                                                                                                                                                                                   │
- │                                                                                                                                                                                            │
- │    │   └───__pycache__                                                                                                                                                                     │
- │                                                                                                                                                                                            │
- │    │           ai_content.cpython-313.pyc                                                                                                                                                  │
- │                                                                                                                                                                                            │
- │    │           analytics.cpython-313.pyc                                                                                                                                                   │
- │                                                                                                                                                                                            │
- │    │           automation.cpython-313.pyc                                                                                                                                                  │
- │                                                                                                                                                                                            │
- │    │           campaigns.cpython-313.pyc                                                                                                                                                   │
- │                                                                                                                                                                                            │
- │    │           dashboard.cpython-313.pyc                                                                                                                                                   │
- │                                                                                                                                                                                            │
- │    │           segmentation.cpython-313.pyc                                                                                                                                                │
- │                                                                                                                                                                                            │
- │    │           social.cpython-313.pyc                                                                                                                                                      │
- │                                                                                                                                                                                            │
- │    │                                                                                                                                                                                       │
- │                                                                                                                                                                                            │
- │    └───__pycache__                                                                                                                                                                         │
- │                                                                                                                                                                                            │
- │            data_handler.cpython-313.pyc                                                                                                                                                    │
- │                                                                                                                                                                                            │
- │            main.cpython-313.pyc                                                                                                                                                            │
- │                                                                                                                                                                                            │
- │            __init__.cpython-313.pyc         
+  
+       * css/base.css: Contendrá el reseteo de estilos, las variables CSS (:root), y los estilos base del body.
+       * css/layout.css: Estilos para la estructura principal de la página, como el .sidebar y el .main-content.
+       * css/components.css: Estilos para componentes reutilizables como botones (.btn), tarjetas (.card), insignias (.badge), y otros elementos de interfaz de usuario comunes.
+       * css/utils.css: Clases de utilidad para márgenes, paddings, flexbox, etc.
+       * css/views/dashboard.css: Estilos específicos para la sección del Dashboard (KPIs, gráficos, etc.).
+       * css/views/campaigns.css: Estilos para la tabla de rendimiento de campañas.
+       * css/views/automation.css: Estilos para las tarjetas de automatización.
+       * css/views/segmentation.css: Estilos para las tarjetas de segmentos.
+       * css/views/ai-content.css: Estilos para el generador de contenido de IA.
+       * css/views/analytics.css: Estilos específicos de la sección de analíticas.
+       * css/responsive.css: Todas las media queries para asegurar que el diseño se adapte a diferentes tamaños de pantalla.

@@ -1,0 +1,54 @@
+/* Reset y Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #64748b;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --sidebar-width: 280px;
+    --sidebar-collapsed: 90px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Smooth transitions */
+* {
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* Scrollbar personalizado para el contenido generado */
+#generatedContentDisplay::-webkit-scrollbar {
+    width: 8px;
+}
+
+#generatedContentDisplay::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+#generatedContentDisplay::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+#generatedContentDisplay::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

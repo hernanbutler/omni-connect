@@ -1,0 +1,23 @@
+/* Utility classes */
+.u-mb-0-75 { margin-bottom: 0.75rem; }
+.u-mb-1 { margin-bottom: 1rem; }
+.u-mb-1-5 { margin-bottom: 1.5rem; }
+.u-mt-1 { margin-top: 1rem; }
+.u-p-2 { padding: 2rem; }
+.u-text-center { text-align: center; }
+.u-flex-center { display: flex; align-items: center; justify-content: center; }
+.u-grid-1-1 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.u-grid-1 { display: grid; grid-template-columns: 1fr; }
+.u-full-width { width: 100%; }
+.u-rounded-sm { border-radius: 0.5rem; }
+.u-rounded { border-radius: 0.75rem; }
+.u-badge { padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600; }
+.u-segment-border { border-left: 4px solid var(--primary); }
+.u-modal { display: none; }
+.u-modal .modal-content { max-width: 800px; }
+.u-muted { color: var(--text-secondary); }
+.u-card-pad { padding: 1.5rem; }
+.u-bg-main { background: var(--bg-main); }
+.u-bg-card { background: var(--bg-card); }
+.u-border { border: 1px solid var(--border); }
+.u-dashed { border-style: dashed; }

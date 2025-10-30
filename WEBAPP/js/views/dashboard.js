@@ -10,11 +10,9 @@ async function loadDashboardContent() {
     
     // Show loading state
     mainContent.innerHTML = `
-        <div style="display: flex; justify-content: center; align-items: center; height: 400px;">
-            <div style="text-align: center;">
-                <i class='bx bx-loader bx-spin' style='font-size: 48px; color: #6366f1;'></i>
-                <p style="margin-top: 16px; color: #64748b;">Cargando datos...</p>
-            </div>
+        <div class="loading-state">
+            <i class='bx bx-loader bx-spin'></i>
+            <p>Cargando datos...</p>
         </div>
     `;
 
@@ -41,12 +39,12 @@ async function loadDashboardContent() {
     } catch (error) {
         console.error('Error loading dashboard:', error);
         mainContent.innerHTML = `
-            <div style="text-align: center; padding: 48px;">
-                <i class='bx bx-error-circle' style='font-size: 64px; color: #ef4444;'></i>
-                <h2 style="margin-top: 16px; color: #0f172a;">Error al cargar datos</h2>
-                <p style="color: #64748b; margin-top: 8px;">${error.message}</p>
-                <p style="color: #64748b; margin-top: 4px;">Verifica que el backend esté corriendo en ${API_BASE_URL}</p>
-                <button onclick="loadDashboardContent()" class="btn btn-primary" style="margin-top: 24px;">
+            <div class="error-state">
+                <i class='bx bx-error-circle'></i>
+                <h2>Error al cargar datos</h2>
+                <p>${error.message}</p>
+                <p>Verifica que el backend esté corriendo en ${API_BASE_URL}</p>
+                <button onclick="loadDashboardContent()" class="btn btn-primary">
                     <i class='bx bx-refresh'></i> Reintentar
                 </button>
             </div>
@@ -137,11 +135,15 @@ function renderDashboard(data) {
             <div class="charts-grid">
                 <div class="chart-card">
                     <h3>Rendimiento de Canales (Revenue por Mes)</h3>
-                    <canvas id="channelChart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="channelChart"></canvas>
+                    </div>
                 </div>
                 <div class="chart-card">
                     <h3>Engagement por Red Social</h3>
-                    <canvas id="socialChart"></canvas>
+                    <div class="chart-container">
+                        <canvas id="socialChart"></canvas>
+                    </div>
                 </div>
             </div>
 

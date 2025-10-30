@@ -29,10 +29,21 @@ function animateElements() {
 function setupSidebar() {
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggleBtn');
+    const mainContent = document.getElementById('mainContent');
 
-    if (toggleBtn) {
+    if (toggleBtn && sidebar && mainContent) {
         toggleBtn.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
+        });
+
+        // When the main content transition ends, fire resize events.
+        // Firing twice (once immediately, once after a delay) helps ensure
+        // that the final layout is caught by the chart library.
+        mainContent.addEventListener('transitionend', () => {
+            window.dispatchEvent(new Event('resize'));
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 50);
         });
     }
 }

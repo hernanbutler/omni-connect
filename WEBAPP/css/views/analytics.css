@@ -1,0 +1,78 @@
+/* Analytics */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.insights-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.insights-card h4 i {
+    color: var(--warning);
+}
+
+.insight-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: var(--bg-main);
+    margin-bottom: 0.75rem;
+}
+
+.insight-item:last-child {
+    margin-bottom: 0;
+}
+
+.insight-item i {
+    font-size: 1.25rem;
+    color: var(white);
+    margin-top: 0.125rem;
+}
+
+.insight-item p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Insights Card */
+.insights-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+}
+
+.insight-item {
+    display: flex;
+    align-items: start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.insight-item:last-child {
+    margin-bottom: 0;
+}
+
+.insight-item i {
+    font-size: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.insight-item p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 13px;
+}

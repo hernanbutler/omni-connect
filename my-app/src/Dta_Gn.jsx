@@ -85,45 +85,55 @@ const MarketingDataGenerator = () => {
     return seasonality[month] || 0.85;
   };
 
+
   // Generar usuarios con perfiles realistas
   const generateUsers = (count) => {
     const users = [];
     const now = new Date();
     
     for (let i = 0; i < count; i++) {
-      const registrationDate = new Date(now.getTime() - randomInt(1, 365 * 2) * 24 * 60 * 60 * 1000);
-      const daysSinceRegistration = Math.floor((now - registrationDate) / (1000 * 60 * 60 * 24));
+      let registrationDate = new Date(now.getTime() - randomInt(1, 365 * 2) * 24 * 60 * 60 * 1000);
       
       // Determinar tipo de usuario basado en distribución realista
       const userTypeRand = Math.random();
       let userType, engagementLevel, purchaseFrequency, avgOrderValue;
       
-      if (userTypeRand < 0.05) { // 5% VIP
+      if (userTypeRand < 0.10) { // 10% New User: menos de 30 días y máximo 1 compra
+        userType = 'new';
+        engagementLevel = gaussianRandom(60, 15);
+        purchaseFrequency = randomInt(0, 2); // 0 o 1
+        avgOrderValue = purchaseFrequency > 0 ? gaussianRandom(100, 50) : 0;
+        // Forzar que la fecha de registro sea reciente para este tipo de usuario
+        registrationDate = new Date(now.getTime() - randomInt(1, 30) * 24 * 60 * 60 * 1000);
+      } else if (userTypeRand < 0.15) { // 5% VIP
         userType = 'vip';
         engagementLevel = gaussianRandom(85, 10);
         purchaseFrequency = randomInt(8, 20);
         avgOrderValue = gaussianRandom(500, 150);
-      } else if (userTypeRand < 0.20) { // 15% Active
+      } else if (userTypeRand < 0.30) { // 15% Active
         userType = 'active';
         engagementLevel = gaussianRandom(65, 15);
         purchaseFrequency = randomInt(3, 8);
         avgOrderValue = gaussianRandom(250, 100);
-      } else if (userTypeRand < 0.50) { // 30% Regular
+      } else if (userTypeRand < 0.60) { // 30% Regular
         userType = 'regular';
         engagementLevel = gaussianRandom(45, 15);
         purchaseFrequency = randomInt(1, 3);
         avgOrderValue = gaussianRandom(150, 75);
-      } else if (userTypeRand < 0.75) { // 25% Occasional
+      } else if (userTypeRand < 0.80) { // 20% Occasional
         userType = 'occasional';
         engagementLevel = gaussianRandom(25, 10);
         purchaseFrequency = randomInt(0, 1);
         avgOrderValue = gaussianRandom(100, 50);
-      } else { // 25% Inactive
+      } else { // 20% Inactive
         userType = 'inactive';
         engagementLevel = gaussianRandom(5, 5);
         purchaseFrequency = 0;
         avgOrderValue = 0;
       }
+
+      const daysSinceRegistration = Math.floor((now - registrationDate) / (1000 * 60 * 60 * 24));
+
 
       const user = {
         id: `USER_${String(i + 1).padStart(6, '0')}`,

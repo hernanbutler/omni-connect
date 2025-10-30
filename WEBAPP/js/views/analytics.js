@@ -32,8 +32,8 @@ async function loadAnalyticsContent() {
                 </div>
             </header>
 
-            <!-- KPIs Overview -->
-            <div class="kpi-overview" id="kpiOverview">
+            <!-- KPI Cards -->
+            <div class="kpi-grid" id="kpiGrid">
                 <div class="loading-spinner">Cargando métricas...</div>
             </div>
 
@@ -43,7 +43,7 @@ async function loadAnalyticsContent() {
                     <canvas id="conversionChart"></canvas>
                 </div>
 
-                <div class="insights-card">
+                <div class="insights-card analytics-insights">
                     <h4><i class='bx bxs-bulb'></i> Insights de IA</h4>
                     <div id="aiInsightsContainer">
                         <div class="loading-spinner">Generando insights...</div>
@@ -88,16 +88,16 @@ async function refreshAnalytics() {
             fetchAIInsights(currentPeriod)
         ]);
 
-    // Render all sections
-    renderAnalyticsKPIs(overview);
+        // Render all sections
+        renderAnalyticsKPIs(overview);
         renderConversionChart(conversions);
         renderCampaignsTable(campaigns);
-    renderAnalyticsAIInsights(insights);
+        renderAnalyticsAIInsights(insights);
         renderSegments(overview.segment_performance || []);
 
     } catch (error) {
         console.error('Error loading analytics:', error);
-        showNotification('Error al cargar los datos de analytics', 'error');
+        // No mostrar notificación aquí para evitar múltiples popups
     }
 }
 
@@ -147,7 +147,7 @@ async function fetchAIInsights(period) {
 }
 
 function renderAnalyticsKPIs(data) {
-    const container = document.getElementById('kpiOverview');
+    const container = document.getElementById('kpiGrid');
     if (!container) return; // view not active
     
     if (!data || !data.overview) {
@@ -159,42 +159,42 @@ function renderAnalyticsKPIs(data) {
     
     container.innerHTML = `
         <div class="kpi-card">
-            <div class="kpi-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="kpi-icon green">
                 <i class='bx bx-trending-up'></i>
             </div>
             <div class="kpi-content">
-                <h3>${formatNumber(overview.total_conversions)}</h3>
-                <p>Conversiones Totales</p>
+                <span class="kpi-label">Conversiones Totales</span>
+                <h2 class="kpi-value">${formatNumber(overview.total_conversions)}</h2>
             </div>
         </div>
 
         <div class="kpi-card">
-            <div class="kpi-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="kpi-icon blue">
                 <i class='bx bx-envelope-open'></i>
             </div>
             <div class="kpi-content">
-                <h3>${overview.open_rate}%</h3>
-                <p>Tasa de Apertura</p>
+                <span class="kpi-label">Tasa de Apertura</span>
+                <h2 class="kpi-value">${overview.open_rate}%</h2>
             </div>
         </div>
 
         <div class="kpi-card">
-            <div class="kpi-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="kpi-icon purple">
                 <i class='bx bx-pointer'></i>
             </div>
             <div class="kpi-content">
-                <h3>${overview.ctr}%</h3>
-                <p>CTR Promedio</p>
+                <span class="kpi-label">CTR Promedio</span>
+                <h2 class="kpi-value">${overview.ctr}%</h2>
             </div>
         </div>
 
         <div class="kpi-card">
-            <div class="kpi-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+            <div class="kpi-icon orange">
                 <i class='bx bx-line-chart'></i>
             </div>
             <div class="kpi-content">
-                <h3>${overview.roi}x</h3>
-                <p>ROI</p>
+                <span class="kpi-label">ROI</span>
+                <h2 class="kpi-value">${overview.roi}x</h2>
             </div>
         </div>
     `;
@@ -298,22 +298,52 @@ function renderCampaignsTable(campaigns) {
                 </tr>
             </thead>
             <tbody>
-                ${campaigns.map(camp => `
-                    <tr>
-                        <td><strong>${camp.name}</strong></td>
-                        <td><span class="channel-badge ${camp.channel}">${camp.channel}</span></td>
-                        <td>${formatNumber(camp.sent)}</td>
-                        <td><span class="${getPerformanceClass(camp.open_rate)}">${camp.open_rate}%</span></td>
-                        <td><span class="${getPerformanceClass(camp.ctr)}">${camp.ctr}%</span></td>
-                        <td><span class="${getPerformanceClass(camp.conversion_rate)}">${camp.conversion_rate}%</span></td>
-                        <td>$${formatNumber(camp.revenue)}</td>
-                    </tr>
-                `).join('')}
+                ${campaigns.map((camp, index) => {
+                    if (!camp) {
+                        console.warn(`Datos de campaña en el índice ${index} son nulos o indefinidos.`);
+                        return ''; // No renderizar nada si el objeto de campaña es nulo
+                    }
+
+                    const name = camp.name || 'N/A';
+                    const channel = camp.channel || 'N/A';
+                    const sent = camp.sent ?? 0;
+                    const open_rate = camp.open_rate ?? 0;
+                    const ctr = camp.ctr ?? 0;
+                    const conversion_rate = camp.conversion_rate ?? 0;
+                    const revenue = camp.revenue ?? 0;
+
+                    if (!camp.name) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'name'.`);
+                    if (!camp.channel) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'channel'.`);
+                    if (camp.sent === undefined) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'sent'.`);
+                    if (camp.open_rate === undefined) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'open_rate'.`);
+                    if (camp.ctr === undefined) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'ctr'.`);
+                    if (camp.conversion_rate === undefined) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'conversion_rate'.`);
+                    if (camp.revenue === undefined) console.warn(`Campaña '${name}' en el índice ${index} no tiene 'revenue'.`);
+
+                    return `
+                        <tr>
+                            <td><strong>${name}</strong></td>
+                            <td><span class="channel-badge ${channel}">${channel}</span></td>
+                            <td>${formatNumber(sent)}</td>
+                            <td><span class="${getPerformanceClass(open_rate)}">${open_rate}%</span></td>
+                            <td><span class="${getPerformanceClass(ctr)}">${ctr}%</span></td>
+                            <td><span class="${getPerformanceClass(conversion_rate)}">${conversion_rate}%</span></td>
+                            <td>$${formatNumber(revenue)}</td>
+                        </tr>
+                    `;
+                }).join('')}
             </tbody>
         </table>
     `;
 
     container.innerHTML = tableHTML;
+}
+
+function formatNumber(number) {
+    if (typeof number !== 'number') {
+        return number;
+    }
+    return new Intl.NumberFormat('es-ES').format(number);
 }
 
 function renderAnalyticsAIInsights(insights) {
@@ -420,13 +450,6 @@ if (!document.getElementById('analytics-styles')) {
     const style = document.createElement('style');
     style.id = 'analytics-styles';
     style.textContent = `
-        .kpi-overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
         .analytics-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -457,28 +480,29 @@ if (!document.getElementById('analytics-styles')) {
             height: 300px !important;
         }
 
-        .insights-card {
+        .analytics-insights {
             background: var(--primary);
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: white; /* Base text color */
         }
 
-        .insights-card h4 {
+        .analytics-insights h4 {
             margin-top: 0;
-            color: var(white);
+            color: white; /* Corrected color */
             display: flex;
             align-items: center;
             gap: 0.5rem;
             margin-bottom: 1rem;
         }
 
-        .insight-item {
+        .analytics-insights .insight-item {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
             padding: 0.75rem;
-            background: var(--bg-secondary);
+            background: rgba(255, 255, 255, 0.1); /* Better background for dark theme */
             border-radius: 8px;
             margin-bottom: 0.75rem;
         }

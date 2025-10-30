@@ -1,0 +1,314 @@
+/* Small reusable components */
+.u-chip {
+    padding: 0.5rem 0.75rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.badge-pill {
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.u-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.u-progress .u-progress-fill {
+    height: 100%;
+    background: var(--primary);
+}
+
+.card-loading { text-align: center; padding: 2rem; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-main);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+}
+
+.btn-icon:hover {
+    background: var(--bg-main);
+    color: var(--primary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.bx-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Hover effects for interactive elements */
+.kpi-card:hover,
+.automation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button,
+.btn,
+.kpi-card,
+.automation-card,
+.form-control {
+    transition: all 0.2s ease;
+}
+
+/* Chart container for responsive charts */
+.chart-container {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+/* Insights Card - Default Light Theme */
+.insights-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+}
+
+.insights-card h4 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+
+.insights-card .insight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bg-main);
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border);
+}
+
+.insights-card .insight-item i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-top: 2px;
+}
+
+.insights-card .insight-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.insights-card .insight-item p strong {
+    color: var(--text-primary);
+}
+
+/* Schedule Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 90%;
+    max-width: 600px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.modal-body p {
+    font-size: 0.95rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.schedule-item {
+    background: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+}
+
+.schedule-item .day {
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+.schedule-item .task {
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.fab:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.5);
+}

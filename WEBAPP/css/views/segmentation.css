@@ -1,0 +1,237 @@
+/* Main Grid */
+.segments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Segment Card Base */
+.segment-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.segment-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+/* Segment Card Border Colors */
+.segment-card-vip { border-left: 4px solid var(--success); }
+.segment-card-riesgo { border-left: 4px solid var(--danger); }
+.segment-card-promesa { border-left: 4px solid var(--primary); }
+.segment-card-leales { border-left: 4px solid #10b981; } /* A specific green */
+.segment-card-hibernando { border-left: 4px solid var(--warning); }
+.segment-card-perdidos { border-left: 4px solid var(--secondary); }
+
+
+.segment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.segment-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.segment-badge {
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.segment-badge.warning { background: var(--danger); }
+.segment-badge.success { background: var(--success); }
+
+.segment-card p {
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+
+.segment-stats {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.segment-stats i {
+    margin-right: 0.25rem;
+}
+
+.segment-card .btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #ffffff; /* Fondo sólido para el modal */
+    border-radius: 16px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    max-width: 800px;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* AI Insights Modal Content */
+.modal-loading, .modal-error {
+    text-align: center;
+    padding: 2rem;
+}
+.modal-loading i, .modal-error i {
+    font-size: 48px;
+    color: var(--primary);
+}
+.modal-error i {
+    color: var(--danger);
+}
+.modal-loading p, .modal-error h3, .modal-error p {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+.modal-error h3 {
+    color: var(--text-primary);
+}
+
+.ai-persona-card, .ai-recommendations-card {
+    background: #f1f5f9; /* Fondo sólido para las tarjetas internas del modal */
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.ai-persona-card:last-child, .ai-recommendations-card:last-child {
+    margin-bottom: 0;
+}
+
+.ai-persona-card h4, .ai-recommendations-card h4 {
+    margin-top: 0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ai-persona-details {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.ai-persona-details > div > p {
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+}
+.ai-persona-details .user-name {
+    color: var(--text-primary);
+}
+.ai-persona-details .user-age {
+    margin-left: 1rem;
+    color: var(--text-secondary);
+}
+.ai-persona-quote {
+    background: var(--bg-main);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    margin-top: 0.5rem;
+}
+
+.ai-recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.ai-recommendation-item {
+    background: white;
+    border-left: 4px solid var(--primary);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.ai-recommendation-item h5 {
+    margin: 0 0 0.75rem 0;
+    color: var(--primary);
+}
+.ai-recommendation-details {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+.ai-recommendation-tags {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.ai-tag {
+    display: inline-block;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}

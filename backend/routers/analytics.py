@@ -22,8 +22,8 @@ async def get_analytics_overview(period: str = Query('30days', regex='^(7days|30
     try:
         users_df, campaigns_df, social_df = data_handler.load_data()
 
-        if campaigns_df is None:
-            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos")
+        if campaigns_df is None or users_df is None or social_df is None:
+            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos. Verifique que los archivos CSV existan en la carpeta 'data'.")
 
         data = analytics_service.get_analytics_data(users_df, campaigns_df, social_df, period)
         return data
@@ -38,8 +38,8 @@ async def export_pdf(period: str = Query('30days', regex='^(7days|30days|3months
     try:
         users_df, campaigns_df, social_df = data_handler.load_data()
 
-        if campaigns_df is None:
-            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos")
+        if campaigns_df is None or users_df is None or social_df is None:
+            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos. Verifique que los archivos CSV existan en la carpeta 'data'.")
 
         service = analytics_service.AnalyticsService(users_df, campaigns_df, social_df)
 
@@ -257,8 +257,8 @@ async def get_conversion_evolution(period: str = Query('30days', regex='^(7days|
     try:
         users_df, campaigns_df, social_df = data_handler.load_data()
 
-        if campaigns_df is None:
-            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos")
+        if campaigns_df is None or users_df is None or social_df is None:
+            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos. Verifique que los archivos CSV existan en la carpeta 'data'.")
 
         service = analytics_service.AnalyticsService(users_df, campaigns_df, social_df)
         evolution = service.get_conversion_evolution(period)
@@ -274,12 +274,11 @@ async def get_top_campaigns(
     period: str = Query('30days', regex='^(7days|30days|3months|year)$'),
     limit: int = Query(10, ge=1, le=50)
 ):
-    """Obtiene las mejores campañas del período"""
     try:
         users_df, campaigns_df, social_df = data_handler.load_data()
 
-        if campaigns_df is None:
-            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos")
+        if campaigns_df is None or users_df is None or social_df is None:
+            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos. Verifique que los archivos CSV existan en la carpeta 'data'.")
 
         service = analytics_service.AnalyticsService(users_df, campaigns_df, social_df)
         campaigns = service.get_top_campaigns(period, limit)
@@ -296,8 +295,8 @@ async def get_ai_insights(period: str = Query('30days', regex='^(7days|30days|3m
     try:
         users_df, campaigns_df, social_df = data_handler.load_data()
 
-        if campaigns_df is None:
-            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos")
+        if campaigns_df is None or users_df is None or social_df is None:
+            raise HTTPException(status_code=500, detail="No se pudieron cargar los datos. Verifique que los archivos CSV existan en la carpeta 'data'.")
 
         # Obtener datos de analytics
         analytics_data = analytics_service.get_analytics_data(users_df, campaigns_df, social_df, period)
