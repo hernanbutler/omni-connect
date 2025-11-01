@@ -1,6 +1,6 @@
 # 🎯 Kit de Marketing Omnicanal para Captación y Retención  
 
-<p align="center"><img src="src/kit-marketing-banner.jpg" width="900px" height="auto"></p>
+<p align="center"><img src="img/1.png" width="900px" height="auto"></p>
 
 ## 📌 Introducción  
 
@@ -62,98 +62,121 @@ Diseñar, desarrollar e implementar un **kit digital de marketing omnicanal** en
 
 ---
 
-## 🧩 Propuesta de Valor  
 
-> **“Un solo kit. Todos tus canales. Más clientes felices.”**
 
-El producto ofrece una experiencia **integral y accesible**:  
+## ⚙️ Funcionalidades  
 
-✅ No requiere conocimientos técnicos avanzados.  
-🤖 Automatiza tareas repetitivas y genera contenido personalizado con IA.  
-📊 Centraliza métricas en un solo lugar.  
-💬 Mejora la coherencia del mensaje entre todos los canales.
-
+- Segmentación avanzada.  
+- Automatización de marketing multicanal (email, redes, SMS).  
+- Dashboard de métricas (CTR, conversiones, tiempo de interacción).  
+- Copys generados por IA adaptados a cada buyer persona.  
+- Predicción de valor de vida del cliente (CLV).  
 ---
 
 ## 🧠 Estructura del Kit  
 
-El proyecto se basa en tres pilares principales:  
+OmniConnect elimina la fragmentación de herramientas al consolidar todo tu marketing digital en una sola plataforma. A continuación, te presentamos cada módulo del sistema:
+🏠 Onboarding y Home
+<p align="center">
+  <img src="img/onboarding.png" width="45%" alt="Onboarding">
+  <img src="img/onboarding2.png" width="45%" alt="Selección de inicio">
+</p>
+<p align="center"><img src="img/home.png" width="90%" alt="Home Dashboard"></p>
+El proceso de incorporación te guía paso a paso. Primero, registras tu empresa indicando su nombre, sector y audiencia principal. Esta información personaliza las sugerencias y adapta la experiencia dentro de la plataforma.
+Luego, eliges cómo empezar: puedes trabajar con tus propios datos o generar contenido desde cero. El Home te da la bienvenida y te muestra las capacidades principales del sistema: Dashboard centralizado, análisis de datos y segmentación con IA.
+📊 Dashboard General
+<p align="center"><img src="img/dashboard.png" width="90%" alt="Dashboard General"></p>
+El Dashboard General es tu centro de operaciones. Aquí visualizas en tiempo real las métricas más importantes de tu estrategia omnicanal:
 
-### **A. Estrategia**  
-Guías y plantillas para definir:  
-- Segmentación de audiencias.  
-- Buyer personas.  
-- Mensajes base y tono de marca.  
+Tasa de Apertura (30%): Mide cuántas personas abren tus emails
+Conversiones (0.2%): Rastrea el porcentaje de usuarios que completan acciones deseadas
+Retención (80.2%): Monitorea la fidelidad de tus clientes
+CTR General (4.6%): Analiza la efectividad de tus llamados a la acción
 
-### **B. Herramientas Digitales**  
-- **Dashboard:** métricas clave y rendimiento de campañas.  
-- **Módulo de Automatización:** emails, redes y notificaciones.  
-- **Segmentador Inteligente:** agrupa clientes según comportamiento.  
+Incluye gráficos interactivos que muestran el rendimiento de canales por mes y la distribución del engagement por red social (Facebook, Instagram, LinkedIn, TikTok, Twitter). Todo consolidado en una vista para tomar decisiones informadas al instante.
+🎯 Segmentación Inteligente con IA
+<p align="center"><img src="img/segmentation.png" width="90%" alt="Segmentación IA"></p>
+La Segmentación Inteligente utiliza Machine Learning y análisis RFM para dividir automáticamente a tus clientes en grupos estratégicos:
 
-### **C. Inteligencia Asistida**  
-- **Generador de textos IA:** crea copies personalizados.  
-- **Analizador de rendimiento:** interpreta métricas y sugiere mejoras.  
-- **Predicción de churn:** detecta clientes en riesgo de abandono.  
+VIP Champions: Clientes de alto valor con compras frecuentes (3,564 usuarios - CLV: $3,882.92)
+En Riesgo: Alta probabilidad de abandono, requieren acción inmediata (5,890 usuarios)
+Promesa: Nuevos clientes con alto potencial de crecimiento (2,714 usuarios)
+Leales: Compradores regulares con buen engagement (5,155 usuarios)
+Hibernando: Bajo engagement, oportunidad de reactivación (2,778 usuarios)
+Perdidos: Inactivos con engagement muy bajo (1,504 usuarios)
+
+Cada segmento incluye métricas detalladas (CLV, engagement, riesgo) y la posibilidad de generar insights automáticos con IA para entender mejor su comportamiento y recibir recomendaciones personalizadas.
+📧 Campañas de Email Marketing
+<p align="center"><img src="img/email.png" width="90%" alt="Campañas Email"></p>
+El módulo de Campañas Email te permite diseñar, programar y analizar tus estrategias de correo electrónico:
+
+Métricas clave: 55,711 emails enviados, 28.32% tasa de apertura, 4.98% CTR promedio, 1.8% tasa de rebote
+Vista de campañas activas y completadas: Monitorea el rendimiento individual de cada campaña
+Plantillas predefinidas: Newsletter Semanal (27.6% apertura) y Campaña Promocional (28.3% apertura)
+Generación de asuntos con IA: Crea líneas de asunto optimizadas automáticamente
+
+Todas las campañas muestran métricas de apertura, CTR y conversión, permitiéndote identificar rápidamente qué estrategias funcionan mejor.
+📱 Gestión de Redes Sociales
+<p align="center"><img src="img/onboarding3.png" width="45%" alt="Cronograma de Publicaciones">
+<img src="img/redes.png" width="45%" alt="Gestión Redes Sociales"></p>
+El módulo de Redes Sociales centraliza toda tu presencia digital:
+
+Métricas por plataforma: Facebook (194,114), Instagram (233,316), LinkedIn (75,668), TikTok (519,024), Twitter (127,263)
+Calendario de publicaciones: Programa contenido con fechas, horarios y estado de cada post
+Cronograma sugerido por IA: Obtén un calendario automatizado basado en tu industria con temas, objetivos y formatos óptimos
+Mejores horarios: Identifica cuándo tu audiencia está más activa (ej: Facebook - Martes 10:00-12:00)
+Posts con mayor engagement: Analiza qué contenido resuena mejor con tu audiencia
+
+Cada publicación se puede generar con un solo clic, incluyendo imagen y copy personalizado.
+🤖 Automatización Inteligente
+<p align="center"><img src="img/automation.png" width="90%" alt="Flujos de Automatización"></p>
+El módulo de Automatización te permite crear flujos multicanal que trabajan por ti las 24/7:
+
+1 flujo activo que ha ahorrado 23 horas y generado $17,532.9 en revenue automatizado
+Flujos configurados:
+
+Bienvenida Nuevos Clientes: Secuencia de 5 emails + 3 posts sociales durante 14 días
+Programa de Referidos: Incentiva a clientes a recomendar tu marca con recompensas automáticas
+Recuperación de Carrito: 3 recordatorios automáticos en 72 horas
+
+
+Plantillas de automatización: 30 minutos promedio de configuración, métricas de efectividad (4.8/5)
+Revenue potencial calculado: $17,532.9 proyectado
+
+Los flujos se pueden activar, pausar o eliminar con un clic, y cada uno muestra el número de usuarios activos en tiempo real.
+✨ Generador de Contenido con IA
+<p align="center"><img src="img/generador.png" width="90%" alt="Generador IA"></p>
+El Generador IA crea contenido de marketing profesional en segundos, potenciado por ChatGPT:
+Tipos de contenido disponibles:
+
+📧 Email: Campañas de email marketing
+📱 Redes Sociales: Posts para Instagram, Facebook, etc.
+📝 Blog: Artículos y contenido largo
+💬 Publicidad: Copys publicitarios
+🛍️ Productos: Descripciones de productos
+🎬 Video: Guiones para videos
+
+Funciones adicionales:
+
+✏️ Mejorar contenido existente
+🌍 Traducir contenido
+📊 Analizar contenido
+
+El sistema incluye tips inteligentes (Sé específico, Define tu audiencia, Elige el tono correcto) y ejemplos rápidos para cada formato. Solo completas un formulario simple y obtienes contenido listo para usar o personalizar.
+📈 Análisis y Reportes
+<p align="center"><img src="img/analisis.png" width="90%" alt="Análisis y Reportes"></p>
+El módulo de Análisis y Reportes te ofrece insights detallados de todas tus campañas:
+
+Métricas consolidadas: 105 conversiones totales, 0.32% tasa de apertura, 0.06% CTR promedio, 4.45x ROI
+Evolución temporal: Gráfico interactivo que muestra conversiones, clics y aperturas a lo largo del tiempo
+Top campañas del período: Analiza qué campañas generan mejores resultados (revenue, CTR, conversión)
+Insights generados por IA: Obtén análisis automáticos y recomendaciones estratégicas
+Exportación múltiple: Descarga datos en CSV, Excel o genera reportes completos en PDF
+
+El tooltip interactivo en el gráfico te permite ver métricas específicas de cualquier día (ej: 2025-10-13 con 70 conversiones, 11 clics, 9 aperturas).
 
 ---
 
-## ⚙️ Funcionalidades  
-
-### 🧱 Must-have (imprescindibles)
-- Segmentación avanzada por edad, ubicación, intereses y comportamiento.  
-- Automatización de marketing multicanal (email, redes, SMS).  
-- Dashboard de métricas (CTR, conversiones, tiempo de interacción).  
-
-### 💡 Nice-to-have (complementarias)
-- Copys generados por IA adaptados a cada buyer persona.  
-- A/B Testing automatizado.  
-- Predicción de valor de vida del cliente (CLV).  
-- Integración con CRM/ERP externos.  
-
----
-
-## 🧭 Estrategia Omnicanal  
-
-| Semana | Canal | Acción | Objetivo |
-|:------:|:------|:-------|:----------|
-| 1 | Email | Lanzamiento del kit y bienvenida | Captación |
-| 2 | Redes Sociales | Publicaciones sobre beneficios | Engagement |
-| 3 | Blog | Artículo: “Cómo automatizar tu marketing” | Educación |
-| 4 | Email + Redes | Promoción y testimonios | Conversión |
-
-
----
-
-## 📊 Indicadores de Éxito (KPI)  
-
-- **Tasa de conversión:** +25% sobre campañas manuales.  
-- **Retención de clientes:** 80% en 6 meses.  
-- **Reducción de tiempo operativo:** -40%.  
-- **Satisfacción (NPS):** ≥ 8.  
-
----
-
-## 🌍 Impacto Esperado  
-
-**En las empresas:**  
-- Mayor eficiencia operativa.  
-- Campañas coherentes entre canales.  
-- Decisiones basadas en datos.  
-
-**En el mercado:**  
-- Democratización del marketing omnicanal.  
-- Impulso a la digitalización de PyMEs.  
-- Creación de nuevos empleos técnicos y creativos.  
-
----
-
-## 🌱 Sostenibilidad y Escalabilidad  
-
-♻️ **Sostenible:** la automatización reduce recursos humanos y energéticos.  
-🚀 **Escalable:** el modelo SaaS permite añadir módulos sin rediseñar la base.  
-🌐 **Internacionalizable:** adaptable a distintos idiomas y sectores.  
-
----
 
 ## 🛠️ Tecnologías Utilizadas  
 
@@ -168,8 +191,6 @@ Guías y plantillas para definir:
 ![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikit-learn&logoColor=fff)
 
-### Visualización y Dashboards:
-![Power BI](https://img.shields.io/badge/Power_BI-F2C811?logo=power-bi&logoColor=white)
 
 ### Gestión del Proyecto:
 ![Notion](https://img.shields.io/badge/Notion-000000?logo=Notion&logoColor=white)
@@ -213,37 +234,14 @@ La aplicación web principal se sirve desde la carpeta `WEBAPP`.
 
 ---
 
-## 📈 Futuros Desarrollos  
 
-- Integración con más plataformas CRM.  
-- Chatbots inteligentes para atención automatizada.  
-- IA predictiva de comportamiento del cliente.  
-- Extensión para WhatsApp Business y Meta Ads.  
-- APIs públicas para integración con sistemas externos.  
-
----
 
 ## 🔗 Enlaces  
 
-- [Documentación completa](https://github.com/tu-repo/kit-marketing-omnicanal/docs)  
-- [Demo en vivo (próximamente)](https://kit-marketing-demo.com)  
-- [Bitácora de desarrollo](https://notion.so/kit-marketing)  
+- [Video Youtube (próximamente)]((https://youtu.be/pKeINeUtNvE))  
 
 ---
 
 ## 📄 Licencia  
 
 Este proyecto está licenciado bajo la **Licencia MIT** – ver archivo [LICENSE](LICENSE.txt) para más detalles.  
-
-  
-       * css/base.css: Contendrá el reseteo de estilos, las variables CSS (:root), y los estilos base del body.
-       * css/layout.css: Estilos para la estructura principal de la página, como el .sidebar y el .main-content.
-       * css/components.css: Estilos para componentes reutilizables como botones (.btn), tarjetas (.card), insignias (.badge), y otros elementos de interfaz de usuario comunes.
-       * css/utils.css: Clases de utilidad para márgenes, paddings, flexbox, etc.
-       * css/views/dashboard.css: Estilos específicos para la sección del Dashboard (KPIs, gráficos, etc.).
-       * css/views/campaigns.css: Estilos para la tabla de rendimiento de campañas.
-       * css/views/automation.css: Estilos para las tarjetas de automatización.
-       * css/views/segmentation.css: Estilos para las tarjetas de segmentos.
-       * css/views/ai-content.css: Estilos para el generador de contenido de IA.
-       * css/views/analytics.css: Estilos específicos de la sección de analíticas.
-       * css/responsive.css: Todas las media queries para asegurar que el diseño se adapte a diferentes tamaños de pantalla.
