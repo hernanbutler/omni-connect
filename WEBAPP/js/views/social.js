@@ -15,7 +15,7 @@ async function loadSocialContent() {
         
         if (result.status === 'success') {
             renderSocialContent(result.data);
-            loadAIInsights();
+            // The call to loadAIInsights() is removed from here.
         } else {
             throw new Error(result.message || 'Error al cargar datos de redes sociales.');
         }
@@ -117,10 +117,9 @@ function renderSocialContent(data) {
                 <div class="social-card-header">
                      <h4><i class='bx bxs-bulb'></i> Recomendaciones IA</h4>
                 </div>
-                <div class="loading-state mini">
-                    <i class='bx bx-loader-alt bx-spin'></i>
-                    <p>Generando insights...</p>
-                </div>
+                <button class="btn btn-primary" onclick="handleGenerateSocialInsights()" style="width: 100%;">
+                    <i class='bx bx-brain'></i> Generar Recomendaciones
+                </button>
             </div>
         </div>
 
@@ -258,17 +257,31 @@ function renderBestTimes(bestTimes) {
     `).join('');
 }
 
-async function loadAIInsights() {
+async function handleGenerateSocialInsights() {
+    const container = document.getElementById('ai-insights-container');
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="social-card-header">
+            <h4><i class='bx bxs-bulb'></i> Recomendaciones IA</h4>
+        </div>
+        <div class="loading-state mini">
+            <i class='bx bx-loader-alt bx-spin'></i>
+            <p>Generando insights...</p>
+        </div>
+    `;
+
     try {
         const response = await fetch(`${API_BASE_URL}/api/v1/social/insights`);
         const result = await response.json();
         
         if (result.status === 'success') {
             renderSocialAIInsights(result.data);
+        } else {
+            throw new Error(result.message || 'Failed to fetch AI insights');
         }
     } catch (error) {
         console.error('Error cargando insights:', error);
-        const container = document.getElementById('ai-insights-container');
         if (container) {
             container.innerHTML = `
                 <div class="social-card-header">
@@ -277,6 +290,7 @@ async function loadAIInsights() {
                 <div class="error-state mini">
                     <i class='bx bx-error-circle'></i>
                     <p>No se pudieron cargar los insights</p>
+                    <button class="btn btn-secondary btn-sm" onclick="handleGenerateSocialInsights()">Reintentar</button>
                 </div>
             `;
         }

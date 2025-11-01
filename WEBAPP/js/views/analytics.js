@@ -46,7 +46,9 @@ async function loadAnalyticsContent() {
                 <div class="insights-card analytics-insights">
                     <h4><i class='bx bxs-bulb'></i> Insights de IA</h4>
                     <div id="aiInsightsContainer">
-                        <div class="loading-spinner">Generando insights...</div>
+                        <button class="btn btn-primary" onclick="handleGenerateAIInsights()" style="width: 100%;">
+                            <i class='bx bx-brain'></i> Generar Insights con IA
+                        </button>
                     </div>
                 </div>
             </div>
@@ -80,24 +82,37 @@ async function loadAnalyticsContent() {
 
 async function refreshAnalytics() {
     try {
-        // Load all data in parallel
-        const [overview, conversions, campaigns, insights] = await Promise.all([
+        // Load all data in parallel, except for AI insights
+        const [overview, conversions, campaigns] = await Promise.all([
             fetchAnalyticsOverview(currentPeriod),
             fetchConversionEvolution(currentPeriod),
-            fetchTopCampaigns(currentPeriod),
-            fetchAIInsights(currentPeriod)
+            fetchTopCampaigns(currentPeriod)
         ]);
 
-        // Render all sections
+        // Render all sections that don't depend on AI
         renderAnalyticsKPIs(overview);
         renderConversionChart(conversions);
         renderCampaignsTable(campaigns);
-        renderAnalyticsAIInsights(insights);
         renderSegments(overview.segment_performance || []);
 
     } catch (error) {
         console.error('Error loading analytics:', error);
-        // No mostrar notificación aquí para evitar múltiples popups
+        // Handle errors for the main content, e.g., show a global error message
+    }
+}
+
+async function handleGenerateAIInsights() {
+    const container = document.getElementById('aiInsightsContainer');
+    if (!container) return;
+
+    container.innerHTML = `<div class="loading-spinner">Generando insights...</div>`;
+
+    try {
+        const insights = await fetchAIInsights(currentPeriod);
+        renderAnalyticsAIInsights(insights);
+    } catch (error) {
+        console.error('Error fetching AI insights:', error);
+        container.innerHTML = `<p style="color: #ffcccc;">Error al generar insights. Inténtalo de nuevo.</p>`;
     }
 }
 

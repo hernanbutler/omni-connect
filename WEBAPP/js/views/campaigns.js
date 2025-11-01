@@ -8,11 +8,10 @@ async function loadCampaignsContent() {
     `;
 
     try {
-        const [overviewRes, activeRes, templatesRes, insightsRes] = await Promise.all([
+        const [overviewRes, activeRes, templatesRes] = await Promise.all([
             fetch(`${API_BASE_URL}/api/v1/campaigns/overview`),
             fetch(`${API_BASE_URL}/api/v1/campaigns/active`),
-            fetch(`${API_BASE_URL}/api/v1/campaigns/templates`),
-            fetch(`${API_BASE_URL}/api/v1/campaigns/ai-insights`).catch(() => ({ ok: false }))
+            fetch(`${API_BASE_URL}/api/v1/campaigns/templates`)
         ]);
 
         if (!overviewRes.ok || !activeRes.ok || !templatesRes.ok) {
@@ -22,7 +21,6 @@ async function loadCampaignsContent() {
         const overviewData = await overviewRes.json();
         const activeData = await activeRes.json();
         const templatesData = await templatesRes.json();
-        const insightsData = insightsRes.ok ? await insightsRes.json() : { success: false };
 
         if (!overviewData.success || !activeData.success || !templatesData.success) {
             throw new Error('Los datos de campañas recibidos no son válidos.');
@@ -31,9 +29,8 @@ async function loadCampaignsContent() {
         const overview = overviewData.data || {};
         const activeCampaigns = activeData.data.campaigns || [];
         const templates = templatesData.data.templates || [];
-        const insights = (insightsData.success && insightsData.data.insights) ? insightsData.data.insights : [];
 
-        mainContent.innerHTML = renderCampaignsHTML(overview, activeCampaigns, templates, insights);
+        mainContent.innerHTML = renderCampaignsHTML(overview, activeCampaigns, templates);
 
         setupCampaignsEventListeners();
         animateElements();
@@ -53,7 +50,7 @@ async function loadCampaignsContent() {
     }
 }
 
-function renderCampaignsHTML(overview, campaigns, templates, insights) {
+function renderCampaignsHTML(overview, campaigns, templates) {
     const campaignsHTML = campaigns.map(campaign => {
         try {
             return renderCampaignCard(campaign);
@@ -69,15 +66,6 @@ function renderCampaignsHTML(overview, campaigns, templates, insights) {
         } catch (e) {
             console.error('[Render Error] Failed to render template item:', e, template);
             return '<div class="list-item error-card"><p>Error al mostrar esta plantilla</p></div>';
-        }
-    }).join('');
-
-    const insightsHTML = insights.map((insight, idx) => {
-        try {
-            return renderInsightItem(insight, idx);
-        } catch (e) {
-            console.error('[Render Error] Failed to render insight item:', e, insight);
-            return '<div class="insight-item error-card"><p>Error al mostrar este insight</p></div>';
         }
     }).join('');
 
@@ -141,21 +129,54 @@ function renderCampaignsHTML(overview, campaigns, templates, insights) {
                     <h3>Insights Inteligentes</h3>
                     <p class="subtitle">Recomendaciones personalizadas basadas en tu histórico</p>
                 </div>
-                <button class="btn btn-secondary" onclick="loadCampaignsContent()">
-                    <i class='bx bx-brain'></i> Actualizar Insights
-                </button>
             </div>
-            <div class="insights-grid">
-                ${insights.length > 0 ? insightsHTML : `
-                    <div class="no-data-card">
-                        <i class='bx bx-brain'></i>
-                        <p>No hay suficientes datos para generar insights.</p>
-                    </div>
-                `}
+            <div class="insights-grid" id="campaigns-insights-grid">
+                 <button class="btn btn-primary" onclick="handleGenerateCampaignInsights()" style="width: 100%; max-width: 400px; margin: 1rem auto; display: block;">
+                    <i class='bx bx-brain'></i> Generar Insights con IA
+                </button>
             </div>
         </div>
     </section>
     `;
+}
+
+async function handleGenerateCampaignInsights() {
+    const container = document.getElementById('campaigns-insights-grid');
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="loading-state" style="padding: 2rem 0;">
+            <i class='bx bx-loader-alt bx-spin'></i>
+            <p>Generando insights con IA...</p>
+        </div>
+    `;
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/v1/campaigns/ai-insights`);
+        if (!response.ok) throw new Error('La respuesta de la API no fue exitosa.');
+        
+        const insightsData = await response.json();
+        if (!insightsData.success) throw new Error(insightsData.message || 'Error en los datos de la API');
+
+        const insights = insightsData.data.insights || [];
+        const insightsHTML = insights.map((insight, idx) => renderInsightItem(insight, idx)).join('');
+
+        container.innerHTML = insights.length > 0 ? insightsHTML : `
+            <div class="no-data-card">
+                <i class='bx bx-brain'></i>
+                <p>No hay suficientes datos para generar nuevos insights.</p>
+            </div>
+        `;
+    } catch (error) {
+        console.error('[handleGenerateCampaignInsights] Error:', error);
+        container.innerHTML = `
+            <div class="error-state" style="padding: 2rem 0;">
+                <i class='bx bx-error'></i>
+                <p>${error.message}</p>
+                <button onclick="handleGenerateCampaignInsights()" class="btn btn-secondary">Reintentar</button>
+            </div>
+        `;
+    }
 }
 
 function renderKpiCard(label, value = 'N/A', trend = 0, icon = 'bx-question-mark', color = 'grey', invertTrend = false) {
