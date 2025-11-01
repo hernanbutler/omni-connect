@@ -78,14 +78,14 @@ Diseñar, desarrollar e implementar un **kit digital de marketing omnicanal** en
 OmniConnect elimina la fragmentación de herramientas al consolidar todo tu marketing digital en una sola plataforma. A continuación, te presentamos cada módulo del sistema:
 🏠 Onboarding y Home
 <p align="center">
-  <img src="img/screenshot-7.png" width="45%" alt="Onboarding">
-  <img src="img/screenshot-8.png" width="45%" alt="Selección de inicio">
+  <img src="img/onboarding.png" width="45%" alt="Onboarding">
+  <img src="img/onboarding2.png" width="45%" alt="Selección de inicio">
 </p>
-<p align="center"><img src="img/screenshot-6.png" width="90%" alt="Home Dashboard"></p>
+<p align="center"><img src="img/home.png" width="90%" alt="Home Dashboard"></p>
 El proceso de incorporación te guía paso a paso. Primero, registras tu empresa indicando su nombre, sector y audiencia principal. Esta información personaliza las sugerencias y adapta la experiencia dentro de la plataforma.
 Luego, eliges cómo empezar: puedes trabajar con tus propios datos o generar contenido desde cero. El Home te da la bienvenida y te muestra las capacidades principales del sistema: Dashboard centralizado, análisis de datos y segmentación con IA.
 📊 Dashboard General
-<p align="center"><img src="img/screenshot-3.png" width="90%" alt="Dashboard General"></p>
+<p align="center"><img src="img/dashboard.png" width="90%" alt="Dashboard General"></p>
 El Dashboard General es tu centro de operaciones. Aquí visualizas en tiempo real las métricas más importantes de tu estrategia omnicanal:
 
 Tasa de Apertura (30%): Mide cuántas personas abren tus emails
@@ -95,7 +95,7 @@ CTR General (4.6%): Analiza la efectividad de tus llamados a la acción
 
 Incluye gráficos interactivos que muestran el rendimiento de canales por mes y la distribución del engagement por red social (Facebook, Instagram, LinkedIn, TikTok, Twitter). Todo consolidado en una vista para tomar decisiones informadas al instante.
 🎯 Segmentación Inteligente con IA
-<p align="center"><img src="img/screenshot-11.png" width="90%" alt="Segmentación IA"></p>
+<p align="center"><img src="img/segmentation.png" width="90%" alt="Segmentación IA"></p>
 La Segmentación Inteligente utiliza Machine Learning y análisis RFM para dividir automáticamente a tus clientes en grupos estratégicos:
 
 VIP Champions: Clientes de alto valor con compras frecuentes (3,564 usuarios - CLV: $3,882.92)
@@ -107,7 +107,7 @@ Perdidos: Inactivos con engagement muy bajo (1,504 usuarios)
 
 Cada segmento incluye métricas detalladas (CLV, engagement, riesgo) y la posibilidad de generar insights automáticos con IA para entender mejor su comportamiento y recibir recomendaciones personalizadas.
 📧 Campañas de Email Marketing
-<p align="center"><img src="img/screenshot-4.png" width="90%" alt="Campañas Email"></p>
+<p align="center"><img src="img/email.png" width="90%" alt="Campañas Email"></p>
 El módulo de Campañas Email te permite diseñar, programar y analizar tus estrategias de correo electrónico:
 
 Métricas clave: 55,711 emails enviados, 28.32% tasa de apertura, 4.98% CTR promedio, 1.8% tasa de rebote
@@ -117,8 +117,8 @@ Generación de asuntos con IA: Crea líneas de asunto optimizadas automáticamen
 
 Todas las campañas muestran métricas de apertura, CTR y conversión, permitiéndote identificar rápidamente qué estrategias funcionan mejor.
 📱 Gestión de Redes Sociales
-<p align="center"><img src="img/screenshot-9.png" width="45%" alt="Cronograma de Publicaciones">
-<img src="img/screenshot-10.png" width="45%" alt="Gestión Redes Sociales"></p>
+<p align="center"><img src="img/onboarding3.png" width="45%" alt="Cronograma de Publicaciones">
+<img src="img/redes.png" width="45%" alt="Gestión Redes Sociales"></p>
 El módulo de Redes Sociales centraliza toda tu presencia digital:
 
 Métricas por plataforma: Facebook (194,114), Instagram (233,316), LinkedIn (75,668), TikTok (519,024), Twitter (127,263)
@@ -129,7 +129,7 @@ Posts con mayor engagement: Analiza qué contenido resuena mejor con tu audienci
 
 Cada publicación se puede generar con un solo clic, incluyendo imagen y copy personalizado.
 🤖 Automatización Inteligente
-<p align="center"><img src="img/screenshot-2.png" width="90%" alt="Flujos de Automatización"></p>
+<p align="center"><img src="img/automation.png" width="90%" alt="Flujos de Automatización"></p>
 El módulo de Automatización te permite crear flujos multicanal que trabajan por ti las 24/7:
 
 1 flujo activo que ha ahorrado 23 horas y generado $17,532.9 en revenue automatizado
@@ -145,7 +145,7 @@ Revenue potencial calculado: $17,532.9 proyectado
 
 Los flujos se pueden activar, pausar o eliminar con un clic, y cada uno muestra el número de usuarios activos en tiempo real.
 ✨ Generador de Contenido con IA
-<p align="center"><img src="img/screenshot-5.png" width="90%" alt="Generador IA"></p>
+<p align="center"><img src="img/generador.png" width="90%" alt="Generador IA"></p>
 El Generador IA crea contenido de marketing profesional en segundos, potenciado por ChatGPT:
 Tipos de contenido disponibles:
 
@@ -164,7 +164,7 @@ Funciones adicionales:
 
 El sistema incluye tips inteligentes (Sé específico, Define tu audiencia, Elige el tono correcto) y ejemplos rápidos para cada formato. Solo completas un formulario simple y obtienes contenido listo para usar o personalizar.
 📈 Análisis y Reportes
-<p align="center"><img src="img/screenshot-1.png" width="90%" alt="Análisis y Reportes"></p>
+<p align="center"><img src="img/analisis.png" width="90%" alt="Análisis y Reportes"></p>
 El módulo de Análisis y Reportes te ofrece insights detallados de todas tus campañas:
 
 Métricas consolidadas: 105 conversiones totales, 0.32% tasa de apertura, 0.06% CTR promedio, 4.45x ROI
