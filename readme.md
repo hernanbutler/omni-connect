@@ -238,7 +238,7 @@ La aplicación web principal se sirve desde la carpeta `WEBAPP`.
 
 ## 🔗 Enlaces  
 
-- [Video Youtube (próximamente)]((https://youtu.be/pKeINeUtNvE))  
+- [Video Youtube](https://youtu.be/pKeINeUtNvE)  
 
 ---
 
