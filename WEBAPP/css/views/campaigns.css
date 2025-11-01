@@ -1,0 +1,150 @@
+/* Grid for campaign cards */
+.campaigns-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Campaign Card specific styles */
+.campaign-card-metrics {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.campaign-card-metrics .metric {
+    flex: 1;
+    text-align: center;
+}
+
+.campaign-card-metrics .metric-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.campaign-card-metrics .metric-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.campaign-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* New button styles for campaign cards */
+.campaign-card-actions .btn {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+/* Status Badge Styles */
+.campaign-status {
+    padding: 0.3rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.campaign-status.status-activa {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.campaign-status.status-completada {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+.campaign-status.status-desconocido {
+    background-color: #e9ecef; /* Light Gray */
+    color: #495057; /* Dark Gray */
+}
+
+.template-list-item-metrics {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* AI Modal Cards */
+.ai-modal-card {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+.ai-modal-card:last-child {
+    margin-bottom: 0;
+}
+.ai-modal-card h4 {
+    margin-top: 0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+.ai-modal-card ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+.ai-modal-card ul li {
+    margin-bottom: 0.75rem;
+}
+.ai-modal-card-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+.ai-modal-card-gradient h4,
+.ai-modal-card-gradient p {
+    color: white;
+    opacity: 0.95;
+}
+
+.subject-line-item {
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    border-left: 4px solid var(--primary);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.subject-line-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.subject-line-item i {
+    color: var(--primary);
+    font-size: 20px;
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniConnect - Kit de Marketing Omnicanal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/views/social.css">
+
+    <!-- Preload Views -->
+    <link rel="preload" href="vistas/home.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/dashboard.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/segmentation.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/campaigns.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/social.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/automation.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/ai-content.html" as="fetch" crossOrigin="anonymous">
+    <link rel="preload" href="vistas/analytics.html" as="fetch" crossOrigin="anonymous">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class='bx bxs-network-chart'></i>
+                <span class="logo-text">OmniConnect</span>
+            </div>
+            <button class="toggle-btn" id="toggleBtn">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#home" class="nav-item active" data-section="home">
+                <i class='bx bxs-home'></i>
+                <span>Home</span>
+            </a>
+            <a href="#dashboard" class="nav-item" data-section="dashboard">
+                <i class='bx bxs-dashboard'></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#segmentation" class="nav-item" data-section="segmentation">
+                <i class='bx bxs-group'></i>
+                <span>Segmentación IA</span>
+            </a>
+            <a href="#campaigns" class="nav-item" data-section="campaigns">
+                <i class='bx bxs-envelope'></i>
+                <span>Campañas Email</span>
+            </a>
+            <a href="#social" class="nav-item" data-section="social">
+                <i class='bx bxl-instagram-alt'></i>
+                <span>Redes Sociales</span>
+            </a>
+            <a href="#automation" class="nav-item" data-section="automation">
+                <i class='bx bxs-bot'></i>
+                <span>Automatización</span>
+            </a>
+            <a href="#ai-content" class="nav-item" data-section="ai-content">
+                <i class='bx bxs-magic-wand'></i>
+                <span>Generador IA</span>
+            </a>
+            <a href="#analytics" class="nav-item" data-section="analytics">
+                <i class='bx bxs-bar-chart-alt-2'></i>
+                <span>Análisis & Reportes</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/50?img=5" alt="Usuario">
+                <div class="user-info">
+                    <span class="user-name">Ana López</span>
+                    <span class="user-role">Plan Growth</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>Bienvenido a Omni-Connect</h2>
+            <p>Antes de empezar, cuéntanos un poco sobre tu empresa. Esto nos ayudará a personalizar tu experiencia.</p>
+            <form id="companyProfileForm">
+                <div class="form-group">
+                    <label for="companyName">Nombre de la Empresa</label>
+                    <input type="text" id="companyName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="companyIndustry">Industria</label>
+                    <input type="text" id="companyIndustry" name="industry" placeholder="Ej: E-commerce, Tecnología, etc." required>
+                </div>
+                <div class="form-group">
+                    <label for="companySize">Tamaño de la Empresa</label>
+                    <select id="companySize" name="company_size">
+                        <option value="1-10">1-10 empleados</option>
+                        <option value="11-50">11-50 empleados</option>
+                        <option value="51-200">51-200 empleados</option>
+                        <option value="201+">201+ empleados</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="targetAudience">Audiencia Principal</label>
+                    <input type="text" id="targetAudience" name="target_audience" placeholder="Ej: Jóvenes adultos, empresas B2B, etc.">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="saveCompanyProfileBtn" class="btn btn-primary">Guardar y Empezar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Suggested Posts Schedule Modal -->
+    <div id="scheduleModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cronograma de Publicaciones Sugerido</h2>
+                <button id="closeScheduleModal" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Basado en tu industria, aquí tienes un punto de partida para tu calendario de contenido.</p>
+                <div id="scheduleContent" class="schedule-grid">
+                    <!-- JS will populate this -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="acceptSchedule" class="btn btn-primary">Empezar a Crear</button>
+                <button id="customizeSchedule" class="btn btn-secondary">Personalizar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Getting Started Modal -->
+    <div id="gettingStartedModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content" style="max-width: 800px;">
+             <div class="modal-header">
+                <h2>¿Cómo quieres empezar?</h2>
+                <button id="closeGettingStartedModal" class="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="path-container" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div class="path-card" style="flex: 1; min-width: 300px;">
+                        <div class="card-icon"><i class='bx bx-data'></i></div>
+                        <h3>Ya tengo datos</h3>
+                        <p>Si ya tienes información sobre tus clientes, campañas o interacciones, súbela a nuestra plataforma para descubrir insights valiosos.</p>
+                        <div class="card-actions">
+                            <a href="#analytics" data-section="analytics" class="btn btn-primary getting-started-action">Analizar Datos</a>
+                            <a href="#segmentation" data-section="segmentation" class="btn btn-secondary getting-started-action">Segmentar Audiencia</a>
+                        </div>
+                    </div>
+                    <div class="path-card" style="flex: 1; min-width: 300px;">
+                        <div class="card-icon"><i class='bx bx-rocket'></i></div>
+                        <h3>Quiero empezar desde cero</h3>
+                        <p>Crea tus primeras campañas de marketing, genera contenido para redes sociales con ayuda de IA y empieza a construir tu presencia online.</p>
+                        <div class="card-actions">
+                            <a href="#campaigns" data-section="campaigns" class="btn btn-primary getting-started-action">Crear Campaña</a>
+                            <a href="#social" data-section="social" class="btn btn-secondary getting-started-action">Publicar en Redes</a>
+                            <a href="#ai-content" data-section="ai-content" class="btn btn-tertiary getting-started-action">Generar Contenido con IA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- El contenido se cargará aquí dinámicamente -->
+    </main>
+
+    <!-- Floating Action Button for Schedule -->
+    <button id="openScheduleBubble" class="fab">
+        <i class='bx bx-calendar-event'></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="js/config.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/views/dashboard.js"></script>
+    <script src="js/views/home.js"></script>
+    <script src="js/views/segmentation.js"></script>
+    <script src="js/views/campaigns.js?v=1.4"></script>
+    <script src="js/views/social.js"></script>
+    <script src="js/views/automation.js"></script>
+    <script src="js/views/ai-content.js"></script>
+    <script src="js/views/analytics.js"></script>
+    <script src="js/views/schedule-view.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>
